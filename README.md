@@ -9,7 +9,7 @@ en su PC creen o seleccionen una carpeta donde clonar este repositorio eso de ha
 1. Crear una carpeta para el proyecto.
 2. Abrir una terminal dentro de esa carpeta.
 3. Ejecutar:
-https://github.com/Ricardo-Flamenco/Proyecto-Python-HelpDesk.git
+git clone https://github.com/Ricardo-Flamenco/Proyecto-Python-HelpDesk.git
 
 luego metanse a la carpeta y creen su rama personal con su nombre con estos comandos:
 git checkout -b nombre-rama
