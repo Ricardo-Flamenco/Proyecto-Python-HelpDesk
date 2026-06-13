@@ -9,13 +9,38 @@ en su PC creen o seleccionen una carpeta donde clonar este repositorio eso de ha
 1. Crear una carpeta para el proyecto.
 2. Abrir una terminal dentro de esa carpeta.
 3. Ejecutar:
+
 git clone https://github.com/Ricardo-Flamenco/Proyecto-Python-HelpDesk.git
+(para clonar)
 
-luego metanse a la carpeta y creen su rama personal con su nombre con estos comandos:
+Entrar a la carpeta con code . hacer ctrl + ñ y en la terminal hacer estos comandos
+
+git init
+(para que inicie git)
+
+git remote add origin https://github.com/Ricardo-Flamenco/Proyecto-Python-HelpDesk.git
+(necesario para otros comandos)
+
+git config --global user.name "Su usuario de GitHub"
+git config --global user.email "El correo con el que se han registrado en GitHub"
+(necesario para otros comandos)
+
 git checkout -b nombre-rama
+(crean su rama, sustituir nombre-rama con su nombre)
 
-despues suban la rama al repositorio:
+git add .
+(seleccionar todos los archivos en tu rama para el commit)
+(Aclaro que saldran muchas letras amarillas parece error pero es normal asi que IGNOREN)
+
+git commit -m "Mensaje aqui"
+(crean un commit para poder guardar la rama el mensaje puede ser: "Creacion de una nueva rama")
+
 git push -u origin nombre-rama
+(paso final crea la rama)
+
+SALDRA ALGO DE REGISTRARSE EN NAVEGADOR O EN CODE COMO SEA PERO REGISTRENSE.
+
+
 
 SI YA HICIERON LO ANTERIOR CADA VEZ QUE VAYAN A PROGRAMAR HAGAN LO SIGUIENTE:
 
@@ -44,6 +69,8 @@ commit hace un guardado porfavor ser lo mas breve y descriptivo con el mensaje p
 
 git push
 suben los cambios al repositorio
+
+
 
 #COMANDOS UTILES EXTRAS 
 
