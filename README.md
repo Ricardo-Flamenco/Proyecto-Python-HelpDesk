@@ -1,4 +1,4 @@
-# Preoyecto-Python-HelpDesk-
+# Proyecto-Python-HelpDesk-
 
 Este sera el repositorio donde trabajaremos, abajo pondre comandos que seran utiles para que trabajemos lo mejor posible
 
