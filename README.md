@@ -9,7 +9,7 @@ en su PC creen o seleccionen una carpeta donde clonar este repositorio eso de ha
 1. Crear una carpeta para el proyecto.
 2. Abrir una terminal dentro de esa carpeta.
 3. Ejecutar:
-git clone https://github.com/Ricardo-Flamenco/Preoyecto-Python-HelpDesk-.git
+git clone https://github.com/Ricardo-Flamenco/Proyecto-Python-HelpDesk-.git
 
 luego metanse a la carpeta y creen su rama personal con su nombre con estos comandos:
 git checkout -b nombre-rama
@@ -44,15 +44,6 @@ commit hace un guardado porfavor ser lo mas breve y descriptivo con el mensaje p
 
 git push
 suben los cambios al repositorio
-
-UNA VEZ SU RAMA ESTE TERMINADA O SU PARTE YA SEA SEGURA ESTE ES EL PROCESO DE AGREGARLA AL MAIN:
-
-git checkout main	
-te mueve de tu rama a la rama main (principal).
-git pull	
-Actualiza main.
-git merge nombre-rama
-Une su rama a la principal
 
 #COMANDOS UTILES EXTRAS 
 
