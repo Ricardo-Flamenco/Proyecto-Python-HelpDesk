@@ -32,8 +32,9 @@ git add .
 (seleccionar todos los archivos en tu rama para el commit)
 (Aclaro que saldran muchas letras amarillas parece error pero es normal asi que IGNOREN)
 
-git commit -m "Mensaje aqui"
+"Mensaje aqui"
 (crean un commit para poder guardar la rama el mensaje puede ser: "Creacion de una nueva rama")
+
 
 git push -u origin nombre-rama
 (paso final crea la rama)
@@ -44,7 +45,7 @@ SALDRA ALGO DE REGISTRARSE EN NAVEGADOR O EN CODE COMO SEA PERO REGISTRENSE.
 
 SI YA HICIERON LO ANTERIOR CADA VEZ QUE VAYAN A PROGRAMAR HAGAN LO SIGUIENTE:
 
-metanse a su carpeta y actualizen el repositorio:
+metanse a su carpeta y actualizen el repositorio:git 
 git pull
 
 vayan a su rama personal:
