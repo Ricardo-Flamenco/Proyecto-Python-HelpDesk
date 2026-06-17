@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from dict import show
 
 def save_ticket():
     ticket_id = ticket_id_entry.get()
@@ -9,9 +10,14 @@ def save_ticket():
     priority = priority_box.get()
 
     if ticket_id == "" or user_name == ""  or problem == "":
-        messagebox.showerror("Missing Information", "Please complete all fields")
-        return 
-        messagebox.showinfo("Success", "Ticket registered successfully.")
+        messagebox.showerror("Missing Information", "Please complete all fields") 
+    else:
+        dict= {"id": ticket_id,
+        "user": user_name,
+        "problem": problem,
+        "priority": priority
+       }
+        return dict
 
 window = tk.Tk()
 window.title("Help Desk System")
@@ -48,7 +54,7 @@ priority_box.pack(pady=5)
 buttons_frame = tk.Frame(main_frame, bg="white")
 buttons_frame.pack(pady=20)
 
-save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=save_ticket)
+save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=save_ticket, show)
 save_button.grid(row=0,column=0,padx=10)
 
 clear_button = tk.Button(buttons_frame,text="Clear Form",bg="#6b7280",fg="white",width=15)

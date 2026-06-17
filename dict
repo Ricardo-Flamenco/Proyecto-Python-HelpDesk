@@ -1,0 +1,5 @@
+from registro import save_ticket
+
+def show():
+    diccionario = save_ticket()
+    print(diccionario)
