@@ -19,13 +19,14 @@ def save_ticket(ticket_id_entry, user_name_entry, problem_text, priority_box):
         "problem": problem,
         "priority": priority
        }
+        print(tickets)
 
 def register_ticket(parent):
 
     main_box = tk.Canvas(parent, bg="#ffffff")
     main_frame = tk.Frame(parent, bg="white", padx=20, pady=20)
     main_box.create_window((0,0), window=main_frame)
-    main_frame.place(relx=1.0, rely=1.0, width=700, height=500)
+    main_frame.place(relx=1.0, rely=1.0, anchor="se", width=700, height=500)
 
     title_label = tk.Label(main_frame, text="Reggister a New Ticket", font=("Arial", 20, "bold"), bg="#ffffff", fg="#1e3a8a")
     title_label.pack(pady=20)
@@ -54,7 +55,7 @@ def register_ticket(parent):
     buttons_frame = tk.Frame(main_frame, bg="white")
     buttons_frame.pack(pady=20)
 
-    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=save_ticket)
+    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:save_ticket(ticket_id_entry, user_name_entry, problem_text, priority_box))
     save_button.grid(row=0,column=0,padx=10)
 
     clear_button = tk.Button(buttons_frame,text="Clear Form",bg="#6b7280",fg="white",width=15)
