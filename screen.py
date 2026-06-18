@@ -1,19 +1,19 @@
 import tkinter as tk
 from tkinter import *
 from registro import register_ticket
-from maker_dicts import tickets_show
+from maker_dicts import tickets_frame_show, show_tickets
 
 screen = tk.Tk()
 screen.title("HelpDesk")
 screen.state("zoomed")
 
-def show_menu (menu):
-    menu(screen)
+register_ticket(screen)
+tickets_frame_show(screen)
 
-register = tk.Button(screen, text="Register", command=(lambda:show_menu(register_ticket)))
+register = tk.Button(screen, text="Register")
 register.pack()
 
-tickets_menu = tk.Button(screen, text="Home", command=(lambda:show_menu(tickets_show)))
+tickets_menu = tk.Button(screen, text="Home")
 tickets_menu.place(y=100)
 
 screen.mainloop()

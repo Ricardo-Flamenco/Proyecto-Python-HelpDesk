@@ -19,7 +19,6 @@ def save_ticket(ticket_id_entry, user_name_entry, problem_text, priority_box):
         "problem": problem,
         "priority": priority
        }
-        print(tickets)
 
 def register_ticket(parent):
 
