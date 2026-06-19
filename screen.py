@@ -8,7 +8,7 @@ screen.title("HelpDesk")
 screen.state("zoomed")
 
 frame_show = tickets_frame_show(screen)
-main_frame, _, _, _, _, = register_ticket(screen, frame_show)
+main_frame, _, _, _, = register_ticket(screen, frame_show)
 
 register = tk.Button(screen, text="Register", command=lambda:main_frame.tkraise())
 register.place(relx=0, anchor="nw")

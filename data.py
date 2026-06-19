@@ -3,10 +3,13 @@ from tkinter import ttk
 from tkinter import messagebox
 
 tickets = {}
+number = 0
 
-def save_ticket(ticket_id_entry, user_name_entry, problem_text, priority_box):
+def save_ticket(user_name_entry, problem_text, priority_box):
 
-    ticket_id = ticket_id_entry.get()
+    global number
+    ticket_id = f"{number:04d}"
+
     user_name = user_name_entry.get()
     problem = problem_text.get("1.0", tk.END).strip()
     priority = priority_box.get()
@@ -20,4 +23,5 @@ def save_ticket(ticket_id_entry, user_name_entry, problem_text, priority_box):
         "priority": priority,
         "state": "pending"
        }
-
+        
+        number += 1

@@ -13,11 +13,6 @@ def register_ticket(parent, frame_show):
     title_label = tk.Label(main_frame, text="Reggister a New Ticket", font=("Arial", 20, "bold"), bg="#ffffff", fg="#1e3a8a")
     title_label.pack(pady=20)
 
-    id_label = tk.Label(main_frame, text="Ticket ID", bg="white", font=("Arial", 12))
-    id_label.pack(anchor="w")
-    ticket_id_entry = tk.Entry(main_frame, width=40)
-    ticket_id_entry.pack(pady=5)
-
     user_label = tk.Label(main_frame, text="User Name", bg="white", font=("Arial", 12))
     user_label.pack(anchor="w")
     user_name_entry = tk.Entry(main_frame, width=40)
@@ -37,10 +32,10 @@ def register_ticket(parent, frame_show):
     buttons_frame = tk.Frame(main_frame, bg="white")
     buttons_frame.pack(pady=20)
 
-    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(ticket_id_entry, user_name_entry, problem_text, priority_box), show_tickets(frame_show)))
+    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(user_name_entry, problem_text, priority_box), show_tickets(frame_show)))
     save_button.grid(row=0,column=0,padx=10)
 
     clear_button = tk.Button(buttons_frame,text="Clear Form",bg="#6b7280",fg="white",width=15)
     clear_button.grid(row=0,column=1,padx=10)
 
-    return menu_register_frame, ticket_id_entry, user_name_entry, problem_text, priority_box
+    return menu_register_frame, user_name_entry, problem_text, priority_box
