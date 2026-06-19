@@ -8,7 +8,7 @@ i = 0
 
 def tickets_frame_show(parent):
     
-    frame_show = tk.Frame(parent, bg="#AF7D7D")
+    frame_show = tk.Frame(parent, bg="#FFFFFF")
     frame_show.place(relx=1.0, rely=1.0, anchor="se", width=900, height=600)
 
     return frame_show
@@ -27,7 +27,7 @@ def show_tickets(frame_show):
         user = tk.Label(visual_ticket, text=f"{tickets[key]["user"]}", font=("Arial", 10))
         user.place(relx=0.25, rely=0.5, anchor="center")
 
-        problem = tk.Label(visual_ticket, text=f"{tickets[key]["problem"]}", font=("Arial", 10))
+        problem = tk.Label(visual_ticket, text=f"{tickets[key]["problem"]}", font=("Arial", 10), wraplength=100)
         problem.place(relx=0.45, rely=0.5, anchor="center")
 
         priority = tk.Label(visual_ticket, text=f"{tickets[key]["priority"]}", font=("Arial", 10))
