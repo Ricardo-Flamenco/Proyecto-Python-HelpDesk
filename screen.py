@@ -7,19 +7,19 @@ screen = tk.Tk()
 screen.title("HelpDesk")
 screen.state("zoomed")
 
-#imagen = PhotoImage(file="Proyecto-Python-HelpDesk/assets/home.png")
-#label = tk.Label(screen,text="Home", image=imagen)
-#label.pack(side="left")
-#imagen.subsample(100, 100)
+home = PhotoImage(file="HelpDesk/assets/home.png")
+home = home.subsample(100, 100)
+label = tk.Label(screen,text="Home", image=home)
+label.pack(side="left")
 
-#ajustes = PhotoImage(file="Proyecto-Python-Helpdesk/assets/ajuste.png")
-#label = tk.Label(screen, text="Ajustes", image=ajustes)
+ajustes = PhotoImage(file="HelpDesk/assets/ajuste.png")
+label = tk.Label(screen, text="Ajustes", image=ajustes)
 
 
 frame_izq = tk.Frame(screen, bg="#1E293B", width=200, height=300)
 frame_izq.pack(side="left", fill="y")
 
-frame_der = tk.Frame(screen, bg="White", width=400, height=100)
+frame_der = tk.Frame(screen, bg="#30a862", width=400, height=100)
 frame_der.pack(side="top", fill="x")
 
 #importa los frames de las funciones
