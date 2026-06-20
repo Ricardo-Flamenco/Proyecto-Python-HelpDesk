@@ -8,7 +8,7 @@ def register_ticket(parent, frame_show):
 
     menu_register_frame = tk.Frame(parent, bg="#ffffff")
     main_frame = tk.Frame(menu_register_frame, bg="white", padx=20, pady=20)
-    menu_register_frame.place(relx=1.0, rely=1.0, anchor="se", width=960, height=600)
+    menu_register_frame.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
     main_frame.place(x=0, y=0, anchor="nw", width=960, height=600)
 
     title_label = tk.Label(main_frame, text="Reggister a New Ticket", font=("Arial", 20, "bold"), bg="#ffffff", fg="#1e3a8a")

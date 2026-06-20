@@ -24,8 +24,8 @@ def tickets_frame_show(parent):
     canva_show.configure(yscrollcommand=scroll.set)
     frame_show.bind("<Configure>", lambda e: canva_show.configure(scrollregion=canva_show.bbox("all")))
 
-    menu_frame_show.place(relx=1.0, rely=1.0, anchor="se", width=960, height=600)
-    canva_show.place(relx=0, rely=0, anchor="nw", width=960, height=600)
+    menu_frame_show.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
+    canva_show.place(relx=0, rely=0, anchor="nw", width=1065, height=600)
 
     return menu_frame_show, frame_show
 
