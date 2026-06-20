@@ -3,6 +3,7 @@ from tkinter import ttk
 from data import save_ticket
 from maker_dicts import show_tickets
 
+#Converti el diseño a un frame para que sea parte de la app el parametro "parent" es screen y se ve que se asigna en screen.py
 def register_ticket(parent, frame_show):
 
     menu_register_frame = tk.Frame(parent, bg="#ffffff")
@@ -38,8 +39,10 @@ def register_ticket(parent, frame_show):
     clear_button = tk.Button(buttons_frame,text="Clear Form",bg="#6b7280",fg="white",width=15, command=lambda:(clear_form(user_name_entry, problem_text)))
     clear_button.grid(row=0,column=1,padx=10)
 
+    #return devuelve todos los datos que has ingresado y son mandados a data.py
     return menu_register_frame, user_name_entry, problem_text, priority_box
 
+#funcion para el boton clear_form
 def clear_form(user_name_entry, problem_text):
     user_name_entry.delete(0, tk.END)
     problem_text.delete("1.0", tk.END)

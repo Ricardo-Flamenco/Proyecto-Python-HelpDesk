@@ -6,12 +6,14 @@ from data import tickets
 
 i = 0
 
+#Se crea el frame donde se crearan los tickets con un scroll parent es screen y es asignado en screen.py
 def tickets_frame_show(parent):
     
     menu_frame_show = tk.Frame(parent, bg="#FFFFFF")
     canva_show = tk.Canvas(menu_frame_show, bg="#FFFFFF")
     frame_show = tk.Frame(canva_show, bg="#ffffff")
 
+    #Un label que es tapado cuando se crea el primer ticket
     information_menu = tk.Label(frame_show, text="Created tickets will appear here", font=("Arial", 20, "bold"), fg="#414141", bg="#ffffff")
     information_menu.grid(padx=260, pady=40, sticky="e")
 
@@ -31,6 +33,7 @@ def show_tickets(frame_show):
 
     global i
 
+    #de data.py es importado tickets y en base al ultimo elemento el que es creado se crea visual_tickets 
     key = next(reversed(tickets))
 
     visual_ticket = tk.Frame(frame_show, relief="raised", bd=3, width=900, height=90 )
@@ -52,6 +55,7 @@ def show_tickets(frame_show):
     state_box.current(0)
     state_box.place(x=726, rely=0.5, anchor="center")
 
+    #si el contenido es mucho para que quepa en el ticket se hace lo siguiente para adaptar el ticket al contenido 
     needed_user_height = user.winfo_reqheight()
     needed_problem_height = problem.winfo_reqheight()
 
