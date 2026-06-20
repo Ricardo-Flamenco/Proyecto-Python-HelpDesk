@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from registro import register_ticket
+from register_tickets import register_ticket
 from maker_dicts import tickets_frame_show
 
 screen = tk.Tk()

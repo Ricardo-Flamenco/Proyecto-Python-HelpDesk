@@ -55,7 +55,7 @@ def show_tickets(frame_show):
     state_box.current(0)
     state_box.place(x=726, rely=0.5, anchor="center")
 
-    #si el contenido es mucho para que quepa en el ticket se hace lo siguiente para adaptar el ticket al contenido 
+    #si el contenido es mucho para que quepa en el ticket se hace lo siguiente para adaptar el ticket la contenido 
     needed_user_height = user.winfo_reqheight()
     needed_problem_height = problem.winfo_reqheight()
 

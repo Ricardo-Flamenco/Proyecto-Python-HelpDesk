@@ -33,7 +33,7 @@ def register_ticket(parent, frame_show):
     buttons_frame = tk.Frame(main_frame, bg="white")
     buttons_frame.pack(pady=20)
 
-    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(user_name_entry, problem_text, priority_box), show_tickets(frame_show)))
+    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(user_name_entry, problem_text, priority_box) and show_tickets(frame_show), notification(parent)))
     save_button.grid(row=0,column=0,padx=10)
 
     clear_button = tk.Button(buttons_frame,text="Clear Form",bg="#6b7280",fg="white",width=15, command=lambda:(clear_form(user_name_entry, problem_text)))
@@ -43,6 +43,10 @@ def register_ticket(parent, frame_show):
     return menu_register_frame, user_name_entry, problem_text, priority_box
 
 #funcion para el boton clear_form
+def notification(parent):
+    notification = tk.Label(parent, text="A ticket has been created", font=("Arial", 20, "bold"), bg="#ffffff", relief="raised")
+    notification.place(relx=1.0 , rely=0.9, anchor="e", width=350, height=50)
+
 def clear_form(user_name_entry, problem_text):
     user_name_entry.delete(0, tk.END)
     problem_text.delete("1.0", tk.END)
