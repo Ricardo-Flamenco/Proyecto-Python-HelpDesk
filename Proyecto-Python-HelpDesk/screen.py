@@ -10,7 +10,10 @@ label = tk.Label(screen,text="Home", image=imagen)
 label.pack(side="left")
 imagen.subsample(100, 100)
 
-ajuste = PhotoImage(file="Proyecto-Python-Helpdesk/assets/ajuste.png")
+ajustes = PhotoImage(file="Proyecto-Python-Helpdesk/assets/ajuste.png")
+label = tk.Label(screen, text="Ajustes", image=ajustes)
+
+
 frame_izq = tk.Frame(screen, bg="#1E293B", width=200, height=300)
 frame_izq.pack(side="left", fill="y")
 
