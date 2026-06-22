@@ -33,7 +33,7 @@ def register_ticket(parent, frame_show):
     buttons_frame = tk.Frame(main_frame, bg="white")
     buttons_frame.pack(pady=20)
 
-    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(user_name_entry, problem_text, priority_box) and show_tickets(frame_show), notification(parent)))
+    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(user_name_entry, problem_text, priority_box) and show_tickets(frame_show) and notification(parent)))
     save_button.grid(row=0,column=0,padx=10)
 
     clear_button = tk.Button(buttons_frame,text="Clear Form",bg="#6b7280",fg="white",width=15, command=lambda:(clear_form(user_name_entry, problem_text)))
@@ -44,8 +44,13 @@ def register_ticket(parent, frame_show):
 
 #funcion para el boton clear_form
 def notification(parent):
-    notification = tk.Label(parent, text="A ticket has been created", font=("Arial", 20, "bold"), bg="#ffffff", relief="raised")
-    notification.place(relx=1.0 , rely=0.9, anchor="e", width=350, height=50)
+    notification = tk.Toplevel(parent)
+    notification.geometry(f"350x50+{parent.winfo_screenwidth() - 350}+{parent.winfo_screenheight() - 150}")
+    notification.overrideredirect(True)
+    notification_label = tk.Label(notification, text="A ticket has been created", font=("Arial", 20, "bold"), bg="#ffffff", relief="raised")
+    notification_label.pack(fill="both", expand=True)
+
+    notification.after(2000, lambda:notification.destroy())
 
 def clear_form(user_name_entry, problem_text):
     user_name_entry.delete(0, tk.END)

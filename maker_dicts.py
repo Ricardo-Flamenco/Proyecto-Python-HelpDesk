@@ -131,3 +131,4 @@ def show_tickets(frame_show):
         problem.bind("<Leave>", lambda e:window_problem.destroy())
 
     i += 1
+    return True
