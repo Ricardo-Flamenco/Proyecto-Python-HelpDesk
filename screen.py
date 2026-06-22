@@ -35,7 +35,7 @@ glass_icon.place(relx=0.28, y=30, anchor="center")
 
 
 
-#FRAME IZQ
+#FRAME IZQ aaaaa
 #Buttons
 active_button = 0
 
