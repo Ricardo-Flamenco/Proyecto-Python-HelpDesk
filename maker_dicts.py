@@ -27,6 +27,19 @@ def tickets_frame_show(parent):
     menu_frame_show.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
     canva_show.place(relx=0, rely=0, anchor="nw", width=1065, height=600)
 
+    canva_show.bind_all("<MouseWheel>", lambda event:move_scroll(event))
+
+
+    def move_scroll(event):
+
+        if frame_show.winfo_height() > canva_show.winfo_height():
+            movement = event.delta
+
+            if movement > 0:
+                canva_show.yview_scroll(-2, "units")
+            elif movement < 0:
+                canva_show.yview_scroll(2, "units")
+
     return menu_frame_show, frame_show
 
 def show_tickets(frame_show):
@@ -39,29 +52,82 @@ def show_tickets(frame_show):
     visual_ticket = tk.Frame(frame_show, relief="raised", bd=3, width=900, height=90 )
     visual_ticket.grid(row=i, column=0, padx=20, pady=30, sticky="e")
 
-    id = tk.Label(visual_ticket, text=f"{key}", font=("Arial", 15, "bold"), wraplength=144)
-    id.place(x=30, rely=0.5, anchor="center")
+    #IDs
+    id_label = tk.Label(visual_ticket, text="ID:")
+    id_label.place(x=60, rely=0.15, anchor="center")
+    id = tk.Label(visual_ticket, text=f"{key}", font=("Arial", 10, "bold"), wraplength=144)
+    id.place(x=60, rely=0.5, anchor="center")
 
-    user = tk.Label(visual_ticket, text=f"{tickets[key]["user"]}", font=("Arial", 10), wraplength=144)
+    #USER
+    user_label = tk.Label(visual_ticket, text="User:")
+    user_label.place(x=204, rely=0.15, anchor="center")
+    user = tk.Label(visual_ticket, text=f"{tickets[key]["user"][:30] + "..." if len(tickets[key]["user"]) > 31 else tickets[key]["user"]}", font=("Arial", 10), wraplength=144)
     user.place(x=204, rely=0.5, anchor="center")
 
-    problem = tk.Label(visual_ticket, text=f"{tickets[key]["problem"]}", font=("Arial", 10), wraplength=164)
+    #PROBLEM
+    problem_label = tk.Label(visual_ticket, text="Description:")
+    problem_label.place(x=378, rely=0.15, anchor="center")
+    problem = tk.Label(visual_ticket, text=f"{tickets[key]["problem"][:35] + "..." if len(tickets[key]["problem"]) > 35 else tickets[key]["problem"]}", font=("Arial", 10), wraplength=164)
     problem.place(x=378, rely=0.5, anchor="center")
 
-    priority = tk.Label(visual_ticket, text=f"{tickets[key]["priority"]}", font=("Arial", 10), wraplength=144)
-    priority.place(x=552, rely=0.5, anchor="center")
+    #PRIORITY
+    priority = tk.Label(visual_ticket, text=f"{tickets[key]["priority"]}", font=("Arial", 10), anchor="w", wraplength=144)
+    priority.place(x=552, rely=0.5, anchor="w")
+    priority_box = tk.Canvas(visual_ticket, bd=0)
+    match tickets[key]["priority"]:
+        case "Low":
+            priority_box.configure(bg="#00A035")
+        case "Medium":
+            priority_box.configure(bg="#f8c24d")
+        case "High":
+            priority_box.configure(bg="#da3535")
+    priority_box.place(x=537, rely=0.5, anchor="center", width=20, height=20)
+
+    #STATE
+    def update_state(highlight):
+
+        match state_box.current():
+            case 0:
+                highlight.place(width=0, height=0)
+            case 1:
+                highlight.config(bg="#f3cf6b")
+                highlight.place(x=-3, y=-1, width=20, height=180)
+            case 2:
+                highlight.config(bg="#0D6E80")
+                highlight.place(x=-3, y=-1, width=20, height=180)
 
     state_box = ttk.Combobox(visual_ticket, values=["pending", "in progress", "resolved"], state="readonly", width=20)
     state_box.current(0)
+    highlight = tk.Canvas(visual_ticket, bd=0)
+    state_box.bind("<<ComboboxSelected>>", lambda event:update_state(highlight))
     state_box.place(x=726, rely=0.5, anchor="center")
 
     #si el contenido es mucho para que quepa en el ticket se hace lo siguiente para adaptar el ticket la contenido 
-    needed_user_height = user.winfo_reqheight()
-    needed_problem_height = problem.winfo_reqheight()
 
-    needed_height = max(needed_user_height, needed_problem_height)
+    #USER
+    user.bind("<Enter>", lambda event:show_user(event))
+    def show_user(event):
+        x_position = event.x_root
+        y_position = event.y_root
+        window_user = tk.Toplevel(frame_show)
+        window_user.overrideredirect(True)
+        window_user.geometry(f"+{x_position + 25}+{y_position + 25}")
+        full_user = tk.Label(window_user, text=f"{tickets[key]["user"]}", wraplength=200, relief="raised", bg="#ffffff")
+        full_user.pack()
+        
+        user.bind("<Leave>", lambda e:window_user.destroy())
 
-    if needed_height > 90 :
-        visual_ticket.configure(height=needed_height + 40)
+    #PROBLEM
+    problem.bind("<Enter>", lambda event:show_problem(event))
+    def show_problem(event):
+        x_position = event.x_root
+        y_position = event.y_root
+        window_problem = tk.Toplevel(frame_show)
+        window_problem.overrideredirect(True)
+        window_problem.geometry(f"+{x_position + 25}+{y_position + 25}")
+        full_problem = tk.Label(window_problem, text=f"{tickets[key]["problem"]}", wraplength=200, relief="raised", bg="#ffffff")
+        full_problem.pack()
+        
+        problem.bind("<Leave>", lambda e:window_problem.destroy())
 
     i += 1
