@@ -1,0 +1,13 @@
+from data import tickets
+
+def buscar_ticket(id_buscar):
+    if id_buscar in tickets:
+        return tickets[id_buscar]
+    return None
+
+
+def eliminar_ticket(id_eliminar):
+    if id_buscar in tickets:
+        del tickets[id_buscar]
+        return True
+    return False
