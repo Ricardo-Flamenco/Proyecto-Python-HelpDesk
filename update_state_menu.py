@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from data import tickets
-from maker_dicts import state_label_dict
+from ticket_make import state_label_dict
 
 def update_state_frame(parent):
         update_menu = tk.Frame(parent)

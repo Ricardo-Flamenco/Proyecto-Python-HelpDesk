@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from data import save_ticket
-from maker_dicts import show_tickets
+from ticket_make import show_tickets
 
 #Converti el diseño a un frame para que sea parte de la app el parametro "parent" es screen y se ve que se asigna en screen.py
 def register_ticket(parent, frame_show):
