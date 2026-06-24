@@ -3,8 +3,8 @@ from tkinter import ttk
 from tkinter import *
 from data import tickets
 
-
 i = 0
+state_label_dict = {}
 
 #Se crea el frame donde se crearan los tickets con un scroll parent es screen y es asignado en screen.py
 def tickets_frame_show(parent):
@@ -86,7 +86,7 @@ def show_tickets(frame_show):
     #STATE
     def update_state(highlight):
 
-        match state_box.current():
+        match state_label.current():
             case 0:
                 highlight.place(width=0, height=0)
             case 1:
@@ -96,11 +96,11 @@ def show_tickets(frame_show):
                 highlight.config(bg="#0D6E80")
                 highlight.place(x=-3, y=-1, width=20, height=180)
 
-    state_box = ttk.Combobox(visual_ticket, values=["pending", "in progress", "resolved"], state="readonly", width=20)
-    state_box.current(0)
+    state_label = tk.Label(visual_ticket, text=f"{tickets[key]["state"]}", font=("Arial", 10), anchor="w", wraplength=144)
     highlight = tk.Canvas(visual_ticket, bd=0)
-    state_box.bind("<<ComboboxSelected>>", lambda event:update_state(highlight))
-    state_box.place(x=726, rely=0.5, anchor="center")
+    state_label.place(x=726, rely=0.5, anchor="center")
+
+    state_label_dict[key] = state_label
 
     #si el contenido es mucho para que quepa en el ticket se hace lo siguiente para adaptar el ticket la contenido 
 

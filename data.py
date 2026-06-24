@@ -25,7 +25,7 @@ def save_ticket(user_name_entry, problem_text, priority_box):
         "user": user_name,
         "problem": problem,
         "priority": priority,
-        "state": "pending"
+        "state": "Pending"
        }
 
         number += 1
