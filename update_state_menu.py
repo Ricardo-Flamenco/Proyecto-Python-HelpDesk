@@ -28,8 +28,22 @@ def update_state_frame(parent):
         search_bar = tk.Entry(update_frame, bg="#ffffff", width=45, font=("Arial", 13))
         search_bar.place(relx=0.5, y=30, anchor="center")
 
-        update_button = tk.Button(update_frame, text="Update", command=lambda:update_state_ticket(state_box, search_bar))
+        update_button = tk.Button(update_frame, text="Update", command=lambda:(update_state_ticket(state_box, search_bar)))
         update_button.place(relx=0.5, rely=0.5, anchor="center", width=90, height=50)
+
+        #STATE
+        #def update_state():
+#
+ #           hi
+#
+ #           match state_label_dict:
+  #              case "Pending":
+   #                 highlight.place(width=0, height=0)
+    #            case "In progress":
+         #           highlight.config(bg="#f3cf6b")
+     #               highlight.place(x=-3, y=-1, width=20, height=180)
+      #          case "Resolved":
+       ##            highlight.place(x=-3, y=-1, width=20, height=180)
 
         def move_scroll(event):
             movement = event.delta

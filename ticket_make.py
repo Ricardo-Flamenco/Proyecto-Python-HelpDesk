@@ -83,21 +83,9 @@ def show_tickets(frame_show):
             priority_box.configure(bg="#da3535")
     priority_box.place(x=537, rely=0.5, anchor="center", width=20, height=20)
 
-    #STATE
-    def update_state(highlight):
-
-        match state_label.current():
-            case 0:
-                highlight.place(width=0, height=0)
-            case 1:
-                highlight.config(bg="#f3cf6b")
-                highlight.place(x=-3, y=-1, width=20, height=180)
-            case 2:
-                highlight.config(bg="#0D6E80")
-                highlight.place(x=-3, y=-1, width=20, height=180)
-
     state_label = tk.Label(visual_ticket, text=f"{tickets[key]["state"]}", font=("Arial", 10), anchor="w", wraplength=144)
     highlight = tk.Canvas(visual_ticket, bd=0)
+    highlight.place(x=0, y=0, anchor="center")
     state_label.place(x=726, rely=0.5, anchor="center")
 
     state_label_dict[key] = state_label

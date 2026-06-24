@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import *
+from data import tickets
  
-def delete_tickets(parent): 
+def delete_tickets_menu(parent): 
     delete_menu_frame = tk.Frame(parent) 
     delete_menu_frame.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
 
@@ -14,4 +15,10 @@ def delete_tickets(parent):
     delete_button = tk.Button(delete_menu_frame, text="Delete Ticket", bg="red", fg="white")
     delete_button.place(rely=0.7, relx=0.5, anchor="center")
 
-    return delete_menu_frame
+    return delete_menu_frame, id_delete
+
+def delete_ticket(id_delete):
+    if id_delete in tickets:
+        del tickets[id_delete]
+        return True
+    return False
