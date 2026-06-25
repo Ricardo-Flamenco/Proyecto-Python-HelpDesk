@@ -34,7 +34,7 @@ frame_der.pack(side="top", fill="x")
 menu_frame_show, frame_show = tickets_frame_show(screen)
 menu_main_frame, _, _, _, = register_ticket(screen, frame_show)
 menu_update_frame = update_state_frame(screen)
-menu_delete_frame = delete_tickets_menu(screen)
+menu_delete_frame, _ = delete_tickets_menu(screen)
 
 #FRAME DER
 search_bar = tk.Entry(frame_der, bg="#ffffff", width=45, font=("Arial", 13))

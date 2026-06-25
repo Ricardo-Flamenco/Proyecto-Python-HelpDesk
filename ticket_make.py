@@ -5,6 +5,7 @@ from data import tickets
 
 i = 0
 state_label_dict = {}
+visual_tickets_dict = {}
 
 #Se crea el frame donde se crearan los tickets con un scroll parent es screen y es asignado en screen.py
 def tickets_frame_show(parent):
@@ -52,6 +53,8 @@ def show_tickets(frame_show):
     visual_ticket = tk.Frame(frame_show, relief="raised", bd=3, width=900, height=90 )
     visual_ticket.grid(row=i, column=0, padx=20, pady=30, sticky="e")
 
+    visual_tickets_dict[key] = visual_ticket
+
     #IDs
     id_label = tk.Label(visual_ticket, text="ID:")
     id_label.place(x=60, rely=0.15, anchor="center")
@@ -84,8 +87,6 @@ def show_tickets(frame_show):
     priority_box.place(x=537, rely=0.5, anchor="center", width=20, height=20)
 
     state_label = tk.Label(visual_ticket, text=f"{tickets[key]["state"]}", font=("Arial", 10), anchor="w", wraplength=144)
-    highlight = tk.Canvas(visual_ticket, bd=0)
-    highlight.place(x=0, y=0, anchor="center")
     state_label.place(x=726, rely=0.5, anchor="center")
 
     state_label_dict[key] = state_label

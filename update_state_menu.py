@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from data import tickets
-from ticket_make import state_label_dict
+from ticket_make import state_label_dict, visual_tickets_dict
 
 def update_state_frame(parent):
         update_menu = tk.Frame(parent)
@@ -30,20 +30,6 @@ def update_state_frame(parent):
 
         update_button = tk.Button(update_frame, text="Update", command=lambda:(update_state_ticket(state_box, search_bar)))
         update_button.place(relx=0.5, rely=0.5, anchor="center", width=90, height=50)
-
-        #STATE
-        #def update_state():
-#
- #           hi
-#
- #           match state_label_dict:
-  #              case "Pending":
-   #                 highlight.place(width=0, height=0)
-    #            case "In progress":
-         #           highlight.config(bg="#f3cf6b")
-     #               highlight.place(x=-3, y=-1, width=20, height=180)
-      #          case "Resolved":
-       ##            highlight.place(x=-3, y=-1, width=20, height=180)
 
         def move_scroll(event):
             movement = event.delta
@@ -75,16 +61,26 @@ def update_state_ticket(state_box, search_bar):
         messagebox.showerror("Error", "The ID entered does not exist.") 
         return
 
+    highlight = tk.Canvas(visual_tickets_dict[ticket_found])
+    highlight.place(width=0, height=0)
+
     #Modificacion del diccionario
     if state_box.current() == 0:
         tickets[ticket_found]["state"] = "Pending"
         state_label_dict[ticket_found].config(text="Pending")
+        highlight.place()
         messagebox.showinfo("Status", "Status updated to pending with sucess")
+
     elif state_box.current() == 1:
         tickets[ticket_found]["state"] = "In process"
-        state_label_dict[ticket_found].config(text="In process")
+        state_label_dict[ticket_found].config(text="In process", fg="#f3cf6b")
+        highlight.config(bg="#f3cf6b")
+        highlight.place(x=-3, y=-1, width=20, height=180)
         messagebox.showinfo("Status", "Status updated to in process successfuly")
+
     elif state_box.current() == 2:
         tickets[ticket_found]["state"] = "Resolved"
-        state_label_dict[ticket_found].config(text="Resolved")
+        state_label_dict[ticket_found].config(text="Resolved", fg="#12a182")
+        highlight.config(bg="#12a182")
+        highlight.place(x=-3, y=-1, width=20, height=180)        
         messagebox.showinfo("Status", "Status updated to resolved successfully")
