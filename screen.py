@@ -28,10 +28,10 @@ pen = pen.subsample(15, 15)
 trash_bin = PhotoImage(file="assets/trash-solid.png")
 trash_bin = trash_bin.subsample(15, 15)
 
-frame_izq = tk.Frame(screen, bg="#1E293B", width=300, height=300)
+frame_izq = tk.Frame(screen, bg="#1E293B", width=300)
 frame_izq.pack(side="left", fill="y")
 
-frame_der = tk.Frame(screen, bg="#1e293b", width=400, height=100)
+frame_der = tk.Frame(screen, bg="#121924", width=400, height=100)
 frame_der.pack(side="top", fill="x")
 
 #importa los frames de las funciones
@@ -41,15 +41,21 @@ menu_update_frame = update_state_frame(screen)
 menu_delete_frame = delete_tickets_menu(screen)
 
 #FRAME DER
-search_bar = tk.Entry(frame_der, bg="#ffffff", width=45, font=("Arial", 13))
-search_bar.place(relx=0.5, y=30, anchor="center")
+search_bar = tk.Entry(frame_der, bg="#ffffff", font=("Arial", 13))
+search_bar.place(x=100, y=30, anchor="w", width=400)
 
-glass_icon = tk.Label(frame_der, image=glass ,bg="#1e293b")
-glass_icon.place(relx=0.28, y=30, anchor="center")
+glass_icon = tk.Label(frame_der, image=glass ,bg="#121924")
+glass_icon.place(x=50, y=30, anchor="w")
+
+search_information = tk.Label(frame_der, bg="#121924", text="Search tickets by ID",fg="#ffffff", font=("Arial", 13, "bold"))
+search_information.place(x=520, y=30, anchor="w")
 
 _, menu_search_frame = ticket_search_frame(screen, search_bar)
 
 #FRAME IZQ
+
+
+
 #Buttons
 active_button = 0
 
@@ -88,7 +94,6 @@ delete.place(x=0, y=260, anchor="w")
 
 search = tk.Button(frame_izq, image=glass_menu, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Search", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_search_frame.tkraise(), activate_buttons(4)))
 search.place(x=0, y=330, anchor="w")
-
 
 #lista que tiene todos los botones de menu
 menu_buttons = [tickets_menu, register, state, delete, search]
