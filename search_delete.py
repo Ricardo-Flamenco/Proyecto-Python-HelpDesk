@@ -11,3 +11,6 @@ def eliminar_ticket(id_eliminar):
         del tickets[id_buscar]
         return True
     return False
+
+
+    
