@@ -4,6 +4,7 @@ from register_tickets import register_ticket
 from ticket_make import tickets_frame_show
 from update_state_menu import update_state_frame
 from delete_ticket import delete_tickets_menu
+from search_tickets import ticket_search_frame
 
 screen = tk.Tk()
 screen.title("HelpDesk")
@@ -18,6 +19,9 @@ clipboard = clipboard.subsample(15, 15)
 glass = PhotoImage(file="assets/magnifying-glass-solid.png")
 glass = glass.subsample(25, 25)
 
+glass_menu = PhotoImage(file="assets/magnifying-glass-solid-menu.png")
+glass_menu = glass_menu.subsample(15, 15)
+
 pen = PhotoImage(file="assets/pen-to-square-solid.png")
 pen = pen.subsample(15, 15)
 
@@ -27,23 +31,23 @@ trash_bin = trash_bin.subsample(15, 15)
 frame_izq = tk.Frame(screen, bg="#1E293B", width=300, height=300)
 frame_izq.pack(side="left", fill="y")
 
-frame_der = tk.Frame(screen, bg="#30a862", width=400, height=100)
+frame_der = tk.Frame(screen, bg="#1e293b", width=400, height=100)
 frame_der.pack(side="top", fill="x")
 
 #importa los frames de las funciones
-menu_frame_show, frame_show = tickets_frame_show(screen)
-menu_main_frame, _, _, _, = register_ticket(screen, frame_show)
+menu_frame_show, frame_show, information_menu = tickets_frame_show(screen)
+menu_main_frame, _, _, _, = register_ticket(screen, frame_show, information_menu)
 menu_update_frame = update_state_frame(screen)
-menu_delete_frame, _ = delete_tickets_menu(screen)
+menu_delete_frame = delete_tickets_menu(screen)
 
 #FRAME DER
 search_bar = tk.Entry(frame_der, bg="#ffffff", width=45, font=("Arial", 13))
 search_bar.place(relx=0.5, y=30, anchor="center")
 
-glass_icon = tk.Label(frame_der, image=glass ,bg="#30a862")
+glass_icon = tk.Label(frame_der, image=glass ,bg="#1e293b")
 glass_icon.place(relx=0.28, y=30, anchor="center")
 
-
+_, menu_search_frame = ticket_search_frame(screen, search_bar)
 
 #FRAME IZQ
 #Buttons
@@ -66,6 +70,8 @@ def activate_buttons(active):
         menu_buttons[2].config(bg="#10164e")
     elif active_button == 3:
         menu_buttons[3].config(bg="#10164e")
+    elif active_button == 4:
+        menu_buttons[4].config(bg="#10164e")
 
 #tkraise() levanta los frames encima de otros para hacer un cambio de menu
 tickets_menu = tk.Button(frame_izq, image=home, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Home", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_frame_show.tkraise(), activate_buttons(0)))
@@ -80,7 +86,12 @@ state.place(x=0, y=190, anchor="w")
 delete = tk.Button(frame_izq, image=trash_bin, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Delete", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_delete_frame.tkraise(), activate_buttons(3)))
 delete.place(x=0, y=260, anchor="w")
 
+search = tk.Button(frame_izq, image=glass_menu, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Search", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_search_frame.tkraise(), activate_buttons(4)))
+search.place(x=0, y=330, anchor="w")
+
+
 #lista que tiene todos los botones de menu
-menu_buttons = [tickets_menu, register, state, delete]
+menu_buttons = [tickets_menu, register, state, delete, search]
+menu_frame_show.tkraise()
 
 screen.mainloop()

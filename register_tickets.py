@@ -4,7 +4,7 @@ from data import save_ticket
 from ticket_make import show_tickets
 
 #Converti el diseño a un frame para que sea parte de la app el parametro "parent" es screen y se ve que se asigna en screen.py
-def register_ticket(parent, frame_show):
+def register_ticket(parent, frame_show, information_menu):
 
     menu_register_frame = tk.Frame(parent, bg="#ffffff")
     main_frame = tk.Frame(menu_register_frame, bg="white", padx=20, pady=20)
@@ -33,7 +33,7 @@ def register_ticket(parent, frame_show):
     buttons_frame = tk.Frame(main_frame, bg="white")
     buttons_frame.pack(pady=20)
 
-    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(user_name_entry, problem_text, priority_box) and show_tickets(frame_show) and notification(parent)))
+    save_button = tk.Button(buttons_frame, text="Save", bg="#2563eb", fg="white", width=15, command=lambda:(save_ticket(user_name_entry, problem_text, priority_box) and show_tickets(frame_show, information_menu) and notification(parent)))
     save_button.grid(row=0,column=0,padx=10)
 
     clear_button = tk.Button(buttons_frame,text="Clear Form",bg="#6b7280",fg="white",width=15, command=lambda:(clear_form(user_name_entry, problem_text)))

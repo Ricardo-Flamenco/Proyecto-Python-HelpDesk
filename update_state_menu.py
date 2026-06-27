@@ -5,9 +5,9 @@ from data import tickets
 from ticket_make import state_label_dict, visual_tickets_dict
 
 def update_state_frame(parent):
-        update_menu = tk.Frame(parent)
-        update_canvas = tk.Canvas(update_menu)
-        update_frame = tk.Frame(update_canvas, width=1065, height=600)
+        update_menu = tk.Frame(parent, bg="#FFFFFF")
+        update_canvas = tk.Canvas(update_menu, bg="#FFFFFF")
+        update_frame = tk.Frame(update_canvas, width=1065, height=600, bg="#FFFFFF")
 
         scroll = tk.Scrollbar(update_menu, orient="vertical", command=update_canvas.yview)
         scroll.pack(side="right", fill="y")   
