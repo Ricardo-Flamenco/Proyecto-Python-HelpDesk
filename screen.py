@@ -37,7 +37,7 @@ frame_der.pack(side="top", fill="x")
 #importa los frames de las funciones
 menu_frame_show, frame_show, information_menu = tickets_frame_show(screen)
 menu_main_frame, _, _, _, = register_ticket(screen, frame_show, information_menu)
-menu_update_frame = update_state_frame(screen)
+menu_update_frame, _ = update_state_frame(screen)
 menu_delete_frame = delete_tickets_menu(screen)
 
 #FRAME DER

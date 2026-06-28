@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
 from data import tickets
 from ticket_make import state_label_dict, visual_tickets_dict
+from notifications import notification_popup
 
 def update_state_frame(parent):
         update_menu = tk.Frame(parent, bg="#FFFFFF")
@@ -28,7 +28,7 @@ def update_state_frame(parent):
         search_bar = tk.Entry(update_frame, bg="#ffffff", width=45, font=("Arial", 13))
         search_bar.place(relx=0.5, y=30, anchor="center")
 
-        update_button = tk.Button(update_frame, text="Update", command=lambda:(update_state_ticket(state_box, search_bar)))
+        update_button = tk.Button(update_frame, text="Update", command=lambda:(update_state_ticket(state_box, search_bar, parent)))
         update_button.place(relx=0.5, rely=0.5, anchor="center", width=90, height=50)
 
         def move_scroll(event):
@@ -39,14 +39,14 @@ def update_state_frame(parent):
             elif movement < 0:
                 update_canvas.yview_scroll(2, "units")
 
-        return update_menu
+        return update_menu, parent
 
-def update_state_ticket(state_box, search_bar):
+def update_state_ticket(state_box, search_bar, parent):
 
     #Entrasda de datos
     id_search = search_bar.get()
     if id_search == "":
-        messagebox.showerror("Error", "An ID has not been entered") 
+        notification_popup(parent, "Enter a ticket ID to update it")
         return 
 
     #Busqeda del billete
@@ -58,7 +58,7 @@ def update_state_ticket(state_box, search_bar):
 
     #validacion de existencia
     if ticket_found is None:
-        messagebox.showerror("Error", "The ID entered does not exist.") 
+        notification_popup(parent, "Ticket ID has not been found")
         return
 
     highlight = tk.Canvas(visual_tickets_dict[ticket_found])
@@ -69,18 +69,21 @@ def update_state_ticket(state_box, search_bar):
         tickets[ticket_found]["state"] = "Pending"
         state_label_dict[ticket_found].config(text="Pending")
         highlight.place()
-        messagebox.showinfo("Status", "Status updated to pending with sucess")
+        
+        notification_popup(parent, "Ticket state successfully changed to: Pending")
 
     elif state_box.current() == 1:
         tickets[ticket_found]["state"] = "In process"
         state_label_dict[ticket_found].config(text="In process", fg="#f3cf6b")
         highlight.config(bg="#f3cf6b")
         highlight.place(x=-3, y=-1, width=20, height=180)
-        messagebox.showinfo("Status", "Status updated to in process successfuly")
+        
+        notification_popup(parent, "Ticket state successfully changed to: in process")
 
     elif state_box.current() == 2:
         tickets[ticket_found]["state"] = "Resolved"
         state_label_dict[ticket_found].config(text="Resolved", fg="#12a182")
         highlight.config(bg="#12a182")
         highlight.place(x=-3, y=-1, width=20, height=180)        
-        messagebox.showinfo("Status", "Status updated to resolved successfully")
+        
+        notification_popup(parent, "Ticket state successfully changed to: Resolved")

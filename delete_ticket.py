@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import *
 from data import tickets
-from ticket_make import visual_tickets_dict, i
+from ticket_make import visual_tickets_dict
+from notifications import notification_popup
  
 def delete_tickets_menu(parent): 
     delete_menu_frame = tk.Frame(parent, bg="#FFFFFF") 
@@ -18,11 +19,16 @@ def delete_tickets_menu(parent):
 
     def delete_ticket(entry_delete):
 
-        global i
         id_delete = entry_delete.get()
+        if id_delete == "":
+            notification_popup(parent, "Enter a ticket ID to delete")
+            return
 
         if id_delete in tickets:
             del tickets[id_delete]
             visual_tickets_dict[id_delete].destroy()
+            notification_popup(parent, "Ticket deleted successfully")
+        else:
+            notification_popup(parent, "Ticket ID has not been found")
 
     return delete_menu_frame

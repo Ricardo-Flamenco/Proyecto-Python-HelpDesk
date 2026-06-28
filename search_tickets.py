@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import messagebox
 from data import tickets
+from notifications import notification_popup
 
 def ticket_search_frame(parent, search_bar):
 
@@ -12,7 +12,11 @@ def ticket_search_frame(parent, search_bar):
     label_placeholder.place(relx=0.5, rely=0.2, anchor="center")
 
     def buscar_ticket(search_bar):
+
         id_buscar = search_bar.get()
+
+        if id_buscar == "":
+            return
 
         if id_buscar in tickets:
 
@@ -34,7 +38,7 @@ def ticket_search_frame(parent, search_bar):
             label_priority = tk.Label(searched_ticket_frame, text=f"{tickets[id_buscar]["priority"]}", font=("Arial", 20, "bold"))  
             label_priority.place(relx=0.6, rely=0.4, anchor="center")
         else:
-            messagebox.showerror("Error", "Ticket has not been found")
+            notification_popup(parent, "Ticket ID has not been found")
        
         return searched_ticket_frame
     return search_bar, searched_ticket_frame
