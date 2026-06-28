@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
-from data import tickets
+from storage import tickets
 
-i = 0
+row = 0
 state_label_dict = {}
 visual_tickets_dict = {}
 
@@ -45,14 +45,14 @@ def tickets_frame_show(parent):
 
 def show_tickets(frame_show, information_menu):
 
-    global i
+    global row
     information_menu.destroy()
 
     #de data.py es importado tickets y en base al ultimo elemento el que es creado se crea visual_tickets 
     key = next(reversed(tickets))
 
     visual_ticket = tk.Frame(frame_show, relief="raised", bd=3, width=900, height=90 )
-    visual_ticket.grid(row=i, column=0, padx=20, pady=30, sticky="e")
+    visual_ticket.grid(row=row, column=0, padx=20, pady=30, sticky="e")
 
     visual_tickets_dict[key] = visual_ticket
 
@@ -87,7 +87,8 @@ def show_tickets(frame_show, information_menu):
             priority_box.configure(bg="#da3535")
     priority_box.place(x=537, rely=0.5, anchor="center", width=20, height=20)
 
-    state_label = tk.Label(visual_ticket, text=f"{tickets[key]["state"]}", font=("Arial", 10), anchor="w", wraplength=144)
+    #STATE
+    state_label = tk.Label(visual_ticket, text=f"{tickets[key]["state"]}", font=("Arial", 10, "bold"), anchor="w", wraplength=144)
     state_label.place(x=726, rely=0.5, anchor="center")
 
     state_label_dict[key] = state_label
@@ -120,5 +121,5 @@ def show_tickets(frame_show, information_menu):
         
         problem.bind("<Leave>", lambda e:window_problem.destroy())
 
-    i += 1
+    row += 1
     return True

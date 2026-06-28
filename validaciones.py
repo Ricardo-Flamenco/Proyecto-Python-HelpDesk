@@ -1,46 +1,53 @@
-tickets = []
+from storage import tickets
+from notifications import notification_popup
 
-def register_ticket(ticket_id, user, issue, priority):
+def validate_ticket(ticket_id, user_name, problem, priority):
 
     for ticket in tickets:
-        if ticket["id"] == ticket_id:
-            return "Error: Duplicate ID"
+        if ticket == ticket_id:
+            return
 
-    if user == "" or issue == "":
-        return "Error: Required fields"
+    if user_name == "" or problem == "":
+        return "Complete forms"
 
     if priority not in ["High", "Medium", "Low"]:
-        return "Error: Invalid priority"
-
-    new_ticket = {
-        "id": ticket_id,
-        "user": user,
-        "issue": issue,
-        "priority": priority,
-        "status": "Pending"
-    }
-
-    tickets.append(new_ticket)
-    return "Ticket registered"
+        return
+    
+    return ticket_id, user_name, problem, priority
 
 def view_tickets():
     return tickets
 
-def search_ticket(ticket_id):
+def search_ticket(parent, search_bar):
+
+    ticket_id = search_bar.get().strip()
+    if ticket_id == "":
+        return
+
     for ticket in tickets:
-        if ticket["id"] == ticket_id:
+        if ticket == ticket_id:
+            notification_popup(parent, "Ticket found")
             return ticket
 
-    return "Ticket not found"
+    notification_popup(parent, "Ticket not found")
+    return 
 
-def change_status(ticket_id, new_status):
+def change_status(state_box, search_bar, parent):
 
-    if new_status not in ["Pending", "In Progress", "Resolved"]:
-        return "Invalid status"
+    ticket_id = search_bar.get().strip()
+    new_status = state_box.get()
+
+    if ticket_id == "":
+        notification_popup(parent, "Enter a ticket ID to update it")
+        return 
+
+    if new_status not in ["Pending", "In process", "Resolved"]:
+        notification_popup(parent, "Invalid status")
+        return
 
     for ticket in tickets:
-        if ticket["id"] == ticket_id:
-            ticket["status"] = new_status
-            return "Status updated"
+        if ticket == ticket_id:
+            return new_status, parent, ticket
 
-    return "Ticket not found"
+    notification_popup(parent, "Ticket not found")
+    return

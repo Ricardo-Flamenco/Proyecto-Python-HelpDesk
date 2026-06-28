@@ -1,0 +1,2 @@
+tickets = {}
+number = 0

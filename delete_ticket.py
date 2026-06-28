@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from data import tickets
+from storage import tickets
 from ticket_make import visual_tickets_dict
 from notifications import notification_popup
  

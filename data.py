@@ -1,34 +1,37 @@
 import tkinter as tk
-from tkinter import messagebox
-
-tickets = {}
-number = 0
+from validaciones import validate_ticket
+from notifications import notification_popup
+import storage
 
 #Obtiene todos los valores de registro para guardar la informacion
-def save_ticket(user_name_entry, problem_text, priority_box):
+def save_ticket(user_name_entry, problem_text, priority_box, parent):
 
     #crea las IDs
-    global number
-    ticket_id = f"{number:04d}"
+    ticket_id = f"{storage.number:04d}"
     
     #Obtiene lo demas
     user_name = user_name_entry.get()
     problem = problem_text.get("1.0", tk.END).strip()
     priority = priority_box.get()
 
+    result = validate_ticket(ticket_id, user_name, problem, priority)
+
     #si los datos estan incompletos o vacios rechaza si no agrega toda la informacion a un diccionario
-    if user_name == ""  or problem == "":
-        messagebox.showerror("Missing Information", "Please complete all fields") 
+    if result is None:
+        return False
+    elif result == "Complete forms":
+        notification_popup(parent, "Please complete all required fields")
         return False
     else:
-        tickets[ticket_id] = {"id": ticket_id,
-        "user": user_name,
-        "problem": problem,
-        "priority": priority,
+        id_checked, user_checked, problem_checked, priority_checked = result
+        storage.tickets[ticket_id] = {"id": id_checked,
+        "user": user_checked,
+        "problem": problem_checked,
+        "priority": priority_checked,
         "state": "Pending"
        }
 
-        number += 1
+        storage.number += 1
         return True
     
 #la estructura del diccionario es:
