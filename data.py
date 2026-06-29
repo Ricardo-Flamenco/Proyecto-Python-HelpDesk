@@ -1,5 +1,5 @@
 import tkinter as tk
-from validaciones import validate_ticket
+from validations import validate_ticket
 from notifications import notification_popup
 import storage
 

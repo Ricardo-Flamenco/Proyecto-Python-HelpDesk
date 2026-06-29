@@ -3,7 +3,7 @@ from tkinter import ttk
 from storage import tickets
 from ticket_make import state_label_dict, visual_tickets_dict
 from notifications import notification_popup
-from validaciones import change_status
+from validations import change_status
 
 def update_state_frame(parent):
         update_menu = tk.Frame(parent, bg="#FFFFFF")
@@ -43,12 +43,12 @@ def update_state_frame(parent):
 
         return update_menu, parent
 
-def update_state_ticket(sada):
+def update_state_ticket(result):
 
-    if sada is None:
+    if result is None:
         return
     
-    new_status, parent, ticket_found = sada
+    new_status, parent, ticket_found = result
 
     highlight = tk.Canvas(visual_tickets_dict[ticket_found])
     highlight.place(width=0, height=0)

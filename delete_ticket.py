@@ -8,8 +8,8 @@ def delete_tickets_menu(parent):
     delete_menu_frame = tk.Frame(parent, bg="#FFFFFF") 
     delete_menu_frame.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
 
-    Ticket_label=tk.Label(delete_menu_frame, text="Enter a ticket ID to delete that ticket", font=("Arial", 15, "bold"), bg="#FFFFFF")
-    Ticket_label.place(rely=0.2, relx=0.5, anchor="center")
+    ticket_label=tk.Label(delete_menu_frame, text="Enter a ticket ID to delete that ticket", font=("Arial", 15, "bold"), bg="#FFFFFF")
+    ticket_label.place(rely=0.2, relx=0.5, anchor="center")
     
     entry_delete = tk.Entry(delete_menu_frame, font=("Arial", 12))
     entry_delete.place(rely=0.5, relx=0.5, anchor="center")

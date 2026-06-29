@@ -1,17 +1,17 @@
 import tkinter as tk
 from tkinter import *
 from storage import tickets
-from validaciones import search_ticket
+from validations import search_ticket
 
 def ticket_search_frame(parent, search_bar):
 
-    search_bar.bind_all("<Return>", lambda event:(search_ticket(parent, search_bar), buscar_ticket(search_ticket(parent, search_bar))))
+    search_bar.bind_all("<Return>", lambda event:(search_ticket(parent, search_bar), show_searched_ticket(search_ticket(parent, search_bar))))
     searched_ticket_frame = tk.Frame(parent, bg="#FFFFFF")
     searched_ticket_frame.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
     label_placeholder = tk.Label(searched_ticket_frame, text="No tickets searched", font=("Arial", 20, "bold"), fg="#414141", bg="#ffffff")
     label_placeholder.place(relx=0.5, rely=0.2, anchor="center")
 
-    def buscar_ticket(ticket):
+    def show_searched_ticket(ticket):
         
         if ticket == None:
             return
