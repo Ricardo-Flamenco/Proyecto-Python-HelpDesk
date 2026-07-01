@@ -19,19 +19,19 @@ def ticket_search_frame(parent, search_bar):
             label_placeholder.destroy()
             searched_ticket_frame.tkraise()
 
-            label_id = tk.Label(searched_ticket_frame,  text=f"{ticket}", font=("Arial", 20, "bold"))
+            label_id = tk.Label(searched_ticket_frame,  text=f"{ticket}", font=("Arial", 15, "bold"))
             label_id.place(relx=0.5, rely=0.1, anchor="center") 
 
-            label_user = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["user"]}", font=("Arial", 20, "bold"))  
+            label_user = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["user"]}", font=("Arial", 15, "bold"), wraplength=500)  
             label_user.place(relx=0.3, rely=0.4, anchor="center")
 
-            label_problem = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["problem"]}", font=("Arial", 20, "bold"))  
+            label_problem = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["problem"]}", font=("Arial", 15, "bold"), wraplength=500)  
             label_problem.place(relx=0.3, rely=0.6, anchor="center")
 
-            label_state = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["state"]}", font=("Arial", 20, "bold"))  
+            label_state = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["state"]}", font=("Arial", 15, "bold"))  
             label_state.place(relx=0.3, rely=0.8, anchor="center")
 
-            label_priority = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["priority"]}", font=("Arial", 20, "bold"))  
+            label_priority = tk.Label(searched_ticket_frame, text=f"{tickets[ticket]["priority"]}", font=("Arial", 15, "bold"))  
             label_priority.place(relx=0.6, rely=0.4, anchor="center")
     
     return search_bar, searched_ticket_frame

@@ -34,12 +34,6 @@ frame_izq.pack(side="left", fill="y")
 frame_der = tk.Frame(screen, bg="#121924", width=400, height=100)
 frame_der.pack(side="top", fill="x")
 
-#importa los frames de las funciones
-menu_frame_show, frame_show, information_menu = tickets_frame_show(screen)
-menu_main_frame, _, _, _, = register_ticket(screen, frame_show, information_menu)
-menu_update_frame, _ = update_state_frame(screen)
-menu_delete_frame = delete_tickets_menu(screen)
-
 #FRAME DER
 search_bar = tk.Entry(frame_der, bg="#ffffff", font=("Arial", 13))
 search_bar.place(x=100, y=30, anchor="w", width=400)
@@ -50,12 +44,17 @@ glass_icon.place(x=50, y=30, anchor="w")
 search_information = tk.Label(frame_der, bg="#121924", text="Search tickets by ID",fg="#ffffff", font=("Arial", 13, "bold"))
 search_information.place(x=520, y=30, anchor="w")
 
+#Basic info
+
+#importa los frames de las funciones
+menu_frame_show, frame_show, information_menu = tickets_frame_show(screen)
+menu_main_frame, _, _, _, = register_ticket(screen, frame_show, information_menu)
+menu_update_frame, _ = update_state_frame(screen)
+menu_delete_frame = delete_tickets_menu(screen)
 _, menu_search_frame = ticket_search_frame(screen, search_bar)
 
+
 #FRAME IZQ
-
-
-
 #Buttons
 active_button = 0
 

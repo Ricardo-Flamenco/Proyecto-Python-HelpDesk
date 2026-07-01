@@ -28,6 +28,7 @@ def delete_tickets_menu(parent):
             del tickets[id_delete]
             visual_tickets_dict[id_delete].destroy()
             notification_popup(parent, "Ticket deleted successfully")
+
         else:
             notification_popup(parent, "Ticket ID has not been found")
 

@@ -59,7 +59,7 @@ def show_tickets(frame_show, information_menu):
     #IDs
     id_label = tk.Label(visual_ticket, text="ID:")
     id_label.place(x=60, rely=0.15, anchor="center")
-    id = tk.Label(visual_ticket, text=f"{key}", font=("Arial", 10, "bold"), wraplength=144)
+    id = tk.Label(visual_ticket, text=f"# {key}", font=("Arial", 10, "bold"), wraplength=144)
     id.place(x=60, rely=0.5, anchor="center")
 
     #USER
