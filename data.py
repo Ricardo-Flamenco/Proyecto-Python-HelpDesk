@@ -7,7 +7,7 @@ import storage
 def save_ticket(user_name_entry, problem_text, priority_box, parent):
 
     #crea las IDs
-    ticket_id = f"#{storage.number:04d}"
+    ticket_id = f"{storage.number:04d}"
     
     #Obtiene lo demas
     user_name = user_name_entry.get()
@@ -30,9 +30,6 @@ def save_ticket(user_name_entry, problem_text, priority_box, parent):
         "priority": priority_checked,
         "state": "Pending"
        }
-
-        storage.current_tickets = len(storage.tickets)
-        storage.ticket_count.config(text=storage.current_tickets)
         
         storage.number += 1
         return True

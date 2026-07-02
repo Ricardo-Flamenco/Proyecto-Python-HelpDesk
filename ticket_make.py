@@ -15,8 +15,8 @@ def tickets_frame_show(parent):
     frame_show = tk.Frame(canva_show, bg="#ffffff")
 
     #Un label que es tapado cuando se crea el primer ticket
-    information_menu = tk.Label(frame_show, text="Created tickets will appear here", font=("Arial", 20, "bold"), fg="#414141", bg="#ffffff")
-    information_menu.grid(padx=280, pady=40, sticky="e")
+    information_menu = tk.Label(menu_frame_show, text="Created tickets will appear here", font=("Arial", 15, "bold"), fg="#414141", bg="#ffffff")
+    information_menu.place(x=10, relwidth=0.98)
 
     scroll = tk.Scrollbar(menu_frame_show, orient="vertical", command=canva_show.yview)
     scroll.pack(side="right", fill="y")    
@@ -43,10 +43,9 @@ def tickets_frame_show(parent):
 
     return menu_frame_show, frame_show, information_menu
 
-def show_tickets(frame_show, information_menu):
+def show_tickets(frame_show):
 
     global row
-    information_menu.destroy()
 
     #de data.py es importado tickets y en base al ultimo elemento el que es creado se crea visual_tickets 
     key = next(reversed(tickets))

@@ -1,4 +1,5 @@
 import tkinter as tk
+import customtkinter as ctk
 from tkinter import ttk
 from storage import tickets
 from ticket_make import state_label_dict, visual_tickets_dict
@@ -26,7 +27,7 @@ def update_state_frame(parent):
         state_box.current(0)
         state_box.place(x=100, y=100, anchor="center")
 
-        search_bar = tk.Entry(update_frame, bg="#ffffff", width=45, font=("Arial", 13))
+        search_bar = ctk.CTkEntry(update_frame, fg_color="#ffffff", width=500, font=("Arial", 13), corner_radius=10)
         search_bar.place(relx=0.5, y=30, anchor="center")
 
         change_status(state_box, search_bar, parent)

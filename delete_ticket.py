@@ -3,6 +3,7 @@ from tkinter import *
 from storage import tickets
 from ticket_make import visual_tickets_dict
 from notifications import notification_popup
+import customtkinter as ctk
  
 def delete_tickets_menu(parent): 
     delete_menu_frame = tk.Frame(parent, bg="#FFFFFF") 
@@ -11,7 +12,7 @@ def delete_tickets_menu(parent):
     ticket_label=tk.Label(delete_menu_frame, text="Enter a ticket ID to delete that ticket", font=("Arial", 15, "bold"), bg="#FFFFFF")
     ticket_label.place(rely=0.2, relx=0.5, anchor="center")
     
-    entry_delete = tk.Entry(delete_menu_frame, font=("Arial", 12))
+    entry_delete = ctk.CTkEntry(delete_menu_frame, width=500, font=("Arial", 12), fg_color="#ffffff", corner_radius=10)
     entry_delete.place(rely=0.5, relx=0.5, anchor="center")
     
     delete_button = tk.Button(delete_menu_frame, text="Delete Ticket", bg="red", fg="white", command=lambda:delete_ticket(entry_delete))

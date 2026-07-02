@@ -1,57 +1,70 @@
 import tkinter as tk
+import customtkinter as ctk
 from tkinter import *
+from PIL import Image, ImageTk
 from register_tickets import register_ticket
 from ticket_make import tickets_frame_show
 from update_state_menu import update_state_frame
 from delete_ticket import delete_tickets_menu
 from search_tickets import ticket_search_frame
+from consultar_tickets import consult_tickets
 
 screen = tk.Tk()
 screen.title("HelpDesk")
 screen.state("zoomed")
 
-home = PhotoImage(file="assets/house-solid.png")
-home = home.subsample(15, 15)
+home = Image.open("assets/house-solid.ico")
+home = home.resize((38, 38), Image.Resampling.LANCZOS)
+home = ImageTk.PhotoImage(home)
 
-clipboard = PhotoImage(file="assets/clipboard-list-solid.png")
-clipboard = clipboard.subsample(15, 15)
+clipboard = Image.open("assets/clipboard-list-solid.ico")
+clipboard = clipboard.resize((38, 38), Image.Resampling.LANCZOS)
+clipboard = ImageTk.PhotoImage(clipboard)
 
-glass = PhotoImage(file="assets/magnifying-glass-solid.png")
-glass = glass.subsample(25, 25)
+glass = Image.open("assets/magnifying-glass-solid.ico")
+glass = glass.resize((28, 28), Image.Resampling.LANCZOS)
+glass = ImageTk.PhotoImage(glass)
 
-glass_menu = PhotoImage(file="assets/magnifying-glass-solid-menu.png")
-glass_menu = glass_menu.subsample(15, 15)
+glass_menu = Image.open("assets/magnifying-glass-solid-menu.ico")
+glass_menu = glass_menu.resize((38, 38), Image.Resampling.LANCZOS)
+glass_menu = ImageTk.PhotoImage(glass_menu)
 
-pen = PhotoImage(file="assets/pen-to-square-solid.png")
-pen = pen.subsample(15, 15)
+pen = Image.open("assets/pen-to-square-solid.ico")
+pen = pen.resize((38, 38), Image.Resampling.LANCZOS)
+pen = ImageTk.PhotoImage(pen)
 
-trash_bin = PhotoImage(file="assets/trash-solid.png")
-trash_bin = trash_bin.subsample(15, 15)
+trash_bin = Image.open("assets/trash-solid.ico")
+trash_bin = trash_bin.resize((38, 38), Image.Resampling.LANCZOS)
+trash_bin = ImageTk.PhotoImage(trash_bin)
+
+folder = Image.open("assets/folder-solid.ico")
+folder = folder.resize((38, 38), Image.Resampling.LANCZOS)
+folder = ImageTk.PhotoImage(folder)
 
 frame_izq = tk.Frame(screen, bg="#1E293B", width=300)
 frame_izq.pack(side="left", fill="y")
 
-frame_der = tk.Frame(screen, bg="#121924", width=400, height=100)
+frame_der = ctk.CTkFrame(screen, fg_color="#121924", width=400, height=100, corner_radius=0)
 frame_der.pack(side="top", fill="x")
 
 #FRAME DER
-search_bar = tk.Entry(frame_der, bg="#ffffff", font=("Arial", 13))
-search_bar.place(x=100, y=30, anchor="w", width=400)
-
+search_bar = ctk.CTkEntry(frame_der, fg_color="#ffffff", font=("Arial", 13), corner_radius=10, width=400)
+search_bar.place(x=100, y=30, anchor="w")
 glass_icon = tk.Label(frame_der, image=glass ,bg="#121924")
 glass_icon.place(x=50, y=30, anchor="w")
 
-search_information = tk.Label(frame_der, bg="#121924", text="Search tickets by ID",fg="#ffffff", font=("Arial", 13, "bold"))
+search_information = tk.Label(frame_der, bg="#121924", text="Search tickets by ID", fg="#ffffff", font=("Arial", 13, "bold"))
 search_information.place(x=520, y=30, anchor="w")
 
 #Basic info
 
 #importa los frames de las funciones
-menu_frame_show, frame_show, information_menu = tickets_frame_show(screen)
-menu_main_frame, _, _, _, = register_ticket(screen, frame_show, information_menu)
+menu_frame_show, frame_show, _ = tickets_frame_show(screen)
+menu_main_frame, _, _, _ = register_ticket(screen, frame_show)
 menu_update_frame, _ = update_state_frame(screen)
 menu_delete_frame = delete_tickets_menu(screen)
 _, menu_search_frame = ticket_search_frame(screen, search_bar)
+menu_consult_frame = consult_tickets(screen)
 
 
 #FRAME IZQ
@@ -77,25 +90,30 @@ def activate_buttons(active):
         menu_buttons[3].config(bg="#10164e")
     elif active_button == 4:
         menu_buttons[4].config(bg="#10164e")
+    elif active_button == 5:
+        menu_buttons[5].config(bg="#10164e")
 
 #tkraise() levanta los frames encima de otros para hacer un cambio de menu
-tickets_menu = tk.Button(frame_izq, image=home, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Home", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_frame_show.tkraise(), activate_buttons(0)))
+tickets_menu = tk.Button(frame_izq, image=home, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Home", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_frame_show.tkraise(), activate_buttons(0)))
 tickets_menu.place(x=0, y=50, anchor="w")
 
-register = tk.Button(frame_izq, image=clipboard, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Register", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_main_frame.tkraise(), activate_buttons(1)))
+register = tk.Button(frame_izq, image=clipboard, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Register a new ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_main_frame.tkraise(), activate_buttons(1)))
 register.place(x=0, y=120, anchor="w")
 
-state = tk.Button(frame_izq, image=pen, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Update state", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_update_frame.tkraise(), activate_buttons(2)))
+state = tk.Button(frame_izq, image=pen, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Update status of a ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_update_frame.tkraise(), activate_buttons(2)))
 state.place(x=0, y=190, anchor="w")
 
-delete = tk.Button(frame_izq, image=trash_bin, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Delete", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_delete_frame.tkraise(), activate_buttons(3)))
+delete = tk.Button(frame_izq, image=trash_bin, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Delete a ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_delete_frame.tkraise(), activate_buttons(3)))
 delete.place(x=0, y=260, anchor="w")
 
-search = tk.Button(frame_izq, image=glass_menu, width=300, padx=10, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Search", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_search_frame.tkraise(), activate_buttons(4)))
+search = tk.Button(frame_izq, image=glass_menu, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Searched tickets", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_search_frame.tkraise(), activate_buttons(4)))
 search.place(x=0, y=330, anchor="w")
 
+consult = tk.Button(frame_izq, image=folder, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Consult tickets", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_consult_frame.tkraise(), activate_buttons(5)))
+consult.place(x=0, y=400, anchor="w")
+
 #lista que tiene todos los botones de menu
-menu_buttons = [tickets_menu, register, state, delete, search]
+menu_buttons = [tickets_menu, register, state, delete, search, consult]
 menu_frame_show.tkraise()
 
 screen.mainloop()

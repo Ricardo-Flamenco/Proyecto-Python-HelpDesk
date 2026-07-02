@@ -5,7 +5,7 @@ from validations import search_ticket
 
 def ticket_search_frame(parent, search_bar):
 
-    search_bar.bind_all("<Return>", lambda event:(search_ticket(parent, search_bar), show_searched_ticket(search_ticket(parent, search_bar))))
+    search_bar.bind("<Return>", lambda event:(search_ticket(parent, search_bar), show_searched_ticket(search_ticket(parent, search_bar))))
     searched_ticket_frame = tk.Frame(parent, bg="#FFFFFF")
     searched_ticket_frame.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
     label_placeholder = tk.Label(searched_ticket_frame, text="No tickets searched", font=("Arial", 20, "bold"), fg="#414141", bg="#ffffff")
