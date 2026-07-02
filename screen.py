@@ -48,7 +48,7 @@ frame_der = ctk.CTkFrame(screen, fg_color="#121924", width=400, height=100, corn
 frame_der.pack(side="top", fill="x")
 
 #FRAME DER
-search_bar = ctk.CTkEntry(frame_der, fg_color="#ffffff", font=("Arial", 13), corner_radius=10, width=400)
+search_bar = ctk.CTkEntry(frame_der, fg_color="#ffffff", text_color="#000000", placeholder_text="Search tickets by ID", font=("Arial", 13), corner_radius=10, width=400)
 search_bar.place(x=100, y=30, anchor="w")
 glass_icon = tk.Label(frame_der, image=glass ,bg="#121924")
 glass_icon.place(x=50, y=30, anchor="w")
@@ -61,7 +61,7 @@ search_information.place(x=520, y=30, anchor="w")
 #importa los frames de las funciones
 menu_frame_show, frame_show, _ = tickets_frame_show(screen)
 menu_main_frame, _, _, _ = register_ticket(screen, frame_show)
-menu_update_frame, _ = update_state_frame(screen)
+menu_update_frame = update_state_frame(screen)
 menu_delete_frame = delete_tickets_menu(screen)
 _, menu_search_frame = ticket_search_frame(screen, search_bar)
 menu_consult_frame = consult_tickets(screen)

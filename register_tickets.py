@@ -18,14 +18,14 @@ def register_ticket(parent, frame_show):
 
     user_label = tk.Label(main_frame, text="User Name", bg="white", font=("Arial", 12))
     user_label.pack(anchor="w")
-    user_name_entry = ctk.CTkEntry(main_frame, width=500, fg_color="#ffffff", corner_radius=10)
+    user_name_entry = ctk.CTkEntry(main_frame, width=500, fg_color="#ffffff", text_color="#000000", placeholder_text="Enter your full name", corner_radius=10)
     user_name_entry.pack(pady=5)
 
-    problem_label = tk.Label(main_frame, text="Problem Description", bg="white", font=("Arial", 12))
+    problem_label = tk.Label(main_frame, text="Describe your issue: ", bg="white", font=("Arial", 12))
     problem_label.pack(anchor="w")
-    problem_text = ctk.CTkTextbox(main_frame, width=500, height=200, fg_color="#ffffff", corner_radius=10, border_width=2)
+    problem_text = ctk.CTkTextbox(main_frame, width=500, height=200, fg_color="#ffffff", text_color="#000000", corner_radius=10, border_width=2)
     problem_text.pack(pady=5)
-
+    
     priority_label = tk.Label(main_frame, text="Priority Level", bg="white", font=("Arial", 12))
     priority_label.pack(anchor="w")
     priority_box = ttk.Combobox(main_frame, values=["Low", "Medium", "High"],state="readonly", width=20)
