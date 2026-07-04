@@ -100,7 +100,7 @@ tickets_menu.place(x=0, y=50, anchor="w")
 register = tk.Button(frame_izq, image=clipboard, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Register a new ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_main_frame.tkraise(), activate_buttons(1)))
 register.place(x=0, y=120, anchor="w")
 
-state = tk.Button(frame_izq, image=pen, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Update status of a ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_update_frame.tkraise(), activate_buttons(2)))
+state = tk.Button(frame_izq, image=pen, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Update state of a ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_update_frame.tkraise(), activate_buttons(2)))
 state.place(x=0, y=190, anchor="w")
 
 delete = tk.Button(frame_izq, image=trash_bin, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Delete a ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_delete_frame.tkraise(), activate_buttons(3)))

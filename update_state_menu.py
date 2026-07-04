@@ -53,8 +53,6 @@ def update_state_frame(parent):
 
     update_canvas.bind("<MouseWheel>", move_scroll)
 
-   
-
     tk.Label(
         update_frame,
         text="Ticket ID",
@@ -68,9 +66,6 @@ def update_state_frame(parent):
         width=30
     )
 
-    search_bar.place(x=30, y=60)
-
-    
     tk.Label(
         update_frame,
         text="New Status",
@@ -89,15 +84,110 @@ def update_state_frame(parent):
         ]
     )
 
+    tk.Label(
+        update_frame,
+        text="Ticket being modified:",
+        bg="white",
+        font=("Arial", 11, "bold")
+    ).place(relx=0.05, rely=0.2)
+
+    search_bar.place(x=30, y=60)
+    search_bar.bind("<KeyRelease>", lambda e: show_match())
+
+    frame_show_ticket_eliminate = tk.Frame(update_frame, padx=55, pady=15, bd=2, relief="ridge", bg="#FFFFFF")
+    frame_show_ticket_eliminate.place(rely=0.25, relx=0.05, relheight=0.65, relwidth=0.9)
+
+    def show_match():
+
+        ticket_match = search_bar.get()
+        if ticket_match in tickets:
+            for widget in frame_show_ticket_eliminate.winfo_children():
+                widget.destroy()
+            tk.Label(
+            frame_show_ticket_eliminate,
+            text=f"Ticket #{tickets[ticket_match]["id"]}",
+            font=("Arial", 20, "bold"),
+            bg="white"
+            ).pack(pady=15)
+
+            tk.Label(
+                frame_show_ticket_eliminate,
+                text="User",
+                font=("Arial", 15, "bold"),
+                bg="white"
+            ).place(x=30, y=70)
+
+            tk.Label(frame_show_ticket_eliminate, text=f"{tickets[ticket_match]["user"][:45] + "..." if len(tickets[ticket_match]["user"]) > 45 else tickets[ticket_match]["user"]}",
+                font=("Arial", 13),
+                bg="white",
+                justify="left"
+            ).place(x=30, y=100)
+
+            tk.Label(
+                frame_show_ticket_eliminate,
+                text="Description",
+                font=("Arial", 15, "bold"),
+                bg="white"
+            ).place(x=30, y=145)
+
+            tk.Label(
+                frame_show_ticket_eliminate,
+                text=f"{tickets[ticket_match]["problem"][:55] + "..." if len(tickets[ticket_match]["problem"]) > 55 else tickets[ticket_match]["problem"]}",
+                font=("Arial", 13),
+                bg="white",
+                justify="left"
+            ).place(x=30, y=175)
+           
+            tk.Label(
+                frame_show_ticket_eliminate,
+                text="Priority",
+                font=("Arial", 15, "bold"),
+                bg="white"
+            ).place(x=30, y=220)
+
+            tk.Label(
+                frame_show_ticket_eliminate,
+                text=f"{tickets[ticket_match]["priority"]}",
+                bg="white",
+                font=("Arial", 13),
+                justify="left"
+            ).place(x=60, y=250)
+            priority_box = tk.Canvas(frame_show_ticket_eliminate, bd=0)
+            match tickets[ticket_match]["priority"]:
+                case "Low":
+                    priority_box.configure(bg="#00A035")
+                case "Medium":
+                    priority_box.configure(bg="#f8c24d")
+                case "High":
+                    priority_box.configure(bg="#da3535")
+            priority_box.place(x=30, y=250, width=20, height=20)
+
+            tk.Label(
+                frame_show_ticket_eliminate,
+                text=f"Current state: {tickets[ticket_match]["state"]}",
+                font=("Arial", 18, "bold"),
+                bg="white",
+                justify="left"
+            ).place(x=500, rely=0.45)
+           
+        else:
+            for widget in frame_show_ticket_eliminate.winfo_children():
+                widget.destroy()
+            tk.Label(
+                frame_show_ticket_eliminate,
+                text="ID doesn´t match any ticket",
+                font=("Arial", 18, "bold"),
+                bg="white"
+            ).place(relx=0.5, rely=0.5, anchor="center")
+        
+
     state_box.current(0)
 
     state_box.place(x=360, y=60)
 
- 
-
     update_button = tk.Button(
         update_frame,
-        text="Update Status",
+        text="Update State",
         bg="#0F62FE",
         fg="white",
         font=("Arial", 11, "bold"),
@@ -114,8 +204,6 @@ def update_state_frame(parent):
     update_button.place(x=650, y=55, width=150, height=35)
 
     return update_menu
-
-
 
 
 def update_state_ticket(result):
