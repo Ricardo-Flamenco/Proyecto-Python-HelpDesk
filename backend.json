@@ -1,6 +1,32 @@
 {
-    "username": "Admin",
-    "Password": "7728",
-    "ID": "0001"
-
+    "tickets": {
+        "T000": {
+            "id": "T000",
+            "user": "José",
+            "problem": "Mi computadora no enciende",
+            "priority": "high",
+            "status": "Pending"
+        },
+        "T001": {
+            "id": "T001",
+            "user": "José",
+            "problem": "Mi computadora no enciende",
+            "priority": "high",
+            "status": "Pending"
+        },
+        "T002": {
+            "id": "T002",
+            "user": "José",
+            "problem": "Mi computadora no enciende",
+            "priority": "high",
+            "status": "Pending"
+        },
+        "T003": {
+            "id": "T003",
+            "user": "José",
+            "problem": "Mi computadora no enciende",
+            "priority": "high",
+            "status": "Pending"
+        }
+    }
 }
