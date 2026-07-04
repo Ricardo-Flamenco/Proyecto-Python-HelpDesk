@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import customtkinter as ctk
 
 from storage import tickets
 from ticket_make import state_label_dict, visual_tickets_dict
@@ -44,7 +45,6 @@ def update_state_frame(parent):
         )
     )
 
-
     def move_scroll(event):
         update_canvas.yview_scroll(
             int(-1 * (event.delta / 120)),
@@ -58,12 +58,16 @@ def update_state_frame(parent):
         text="Ticket ID",
         bg="white",
         font=("Arial", 11, "bold")
-    ).place(x=120, y=30)
+    ).place(x=150, y=30)
 
-    search_bar = tk.Entry(
+    search_bar = ctk.CTkEntry(
         update_frame,
-        font=("Arial", 12),
-        width=30
+        fg_color="#ffffff",
+        text_color="#000000", 
+        placeholder_text="Change the state of a tickets by ID", 
+        font=("Arial", 13), 
+        corner_radius=10, 
+        width=275
     )
 
     tk.Label(
@@ -71,7 +75,7 @@ def update_state_frame(parent):
         text="New Status",
         bg="white",
         font=("Arial", 11, "bold")
-    ).place(x=420, y=30)
+    ).place(x=460, y=30)
 
     state_box = ttk.Combobox(
         update_frame,
@@ -91,7 +95,7 @@ def update_state_frame(parent):
         font=("Arial", 11, "bold")
     ).place(relx=0.05, rely=0.2)
 
-    search_bar.place(x=30, y=60)
+    search_bar.place(x=55, y=60)
     search_bar.bind("<KeyRelease>", lambda e: show_match())
 
     frame_show_ticket_eliminate = tk.Frame(update_frame, padx=55, pady=15, bd=2, relief="ridge", bg="#FFFFFF")
@@ -183,7 +187,7 @@ def update_state_frame(parent):
 
     state_box.current(0)
 
-    state_box.place(x=360, y=60)
+    state_box.place(x=435, y=60)
 
     update_button = tk.Button(
         update_frame,
@@ -201,7 +205,7 @@ def update_state_frame(parent):
         )
     )
 
-    update_button.place(x=650, y=55, width=150, height=35)
+    update_button.place(x=700, y=55, width=150, height=35)
 
     return update_menu
 

@@ -1,17 +1,33 @@
 import tkinter as tk
 from tkinter import ttk
 from storage import tickets
+from notifications import notification_popup
 
 def consult_tickets(parent):
     frame_consult_tickets = tk.Frame(parent, width=800, height=500, bg="#ffffff")
     frame_consult_tickets.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
 
-    title_label = tk.Label(frame_consult_tickets, text="View Tickets", font=("Arial", 20, "bold"),bg="#ffffff",fg="#1e3a8a")
-
+    title_label = tk.Label(frame_consult_tickets, text="View Tickets", font=("Arial", 20, "bold"), bg="#ffffff",fg="#1e3a8a")
     title_label.pack(pady=20)
 
     table_frame = tk.Frame(frame_consult_tickets, bg="white")
     table_frame.pack(padx=20, pady=10, fill="both", expand=True)
+
+    stats_frame = tk.Frame(frame_consult_tickets, bg="#ffffff", width=560, height=30)
+    stats_frame.place(x=30, y=70)
+
+    ticket_count = tk.Label(stats_frame, text=f"Amount of tickets: {len(tickets.keys())}", font=("Arial", 10), bg="#ffffff")
+    ticket_count.grid(row=0, column=0, padx=20, sticky="w")
+
+    resolved_tickets = tk.Label(stats_frame, text=f"Resolved tickets: 0", font=("Arial", 10), bg="#ffffff")
+    resolved_tickets.grid(row=0, column=1, padx=20, sticky="w")
+
+    pending_tickets = tk.Label(stats_frame, text=f"Pending tickets: 0", font=("Arial", 10), bg="#ffffff")
+    pending_tickets.grid(row=0, column=2, padx=20, sticky="w")
+
+    high_tickets = tk.Label(stats_frame,  text=f"High priority tickets: 0", font=("Arial", 10), bg="#ffffff")
+    high_tickets.grid(row=0, column=3, padx=20, sticky="w")
+
 
     tickets_table = ttk.Treeview(table_frame,columns=("ID", "User", "Priority", "Status"),show="headings",height=12)
 
@@ -39,16 +55,38 @@ def consult_tickets(parent):
 
     def refresh_table():
         # Vaciar la tabla
+        tickets_resolved = 0
+        tickets_high = 0
+        tickets_pending = 0
+
         tickets_table.delete(*tickets_table.get_children())
 
         # Volver a llenarla
         for ticket_id in tickets:
             tickets_table.insert("", tk.END, values=(ticket_id, tickets[ticket_id]["user"], tickets[ticket_id]["priority"], tickets[ticket_id]["state"]))
 
-    def seleccionar_ticket():
-        ticket_id = tickets_table.selection()
+        for ticket in tickets:
+            if tickets[ticket]["state"] == "Resolved":
+                tickets_resolved += 1
 
-    tickets_table.bind("<<TreeviewSelect>>", lambda e: seleccionar_ticket())
+        for ticket in tickets:
+            if tickets[ticket]["state"] == "Pending":
+                tickets_pending += 1
+
+        for ticket in tickets:
+            if tickets[ticket]["priority"] == "High":
+                tickets_high += 1
+
+        ticket_count.config(text=f"Amount of tickets: {len(tickets.keys())}")
+
+        resolved_tickets.config(text=f"Resolved tickets: {tickets_resolved}")
+
+        pending_tickets.config(text=f"Pending tickets: {tickets_pending}")
+
+        high_tickets.config(text=f"High priority tickets: {tickets_high}")
+
+
+        notification_popup(parent, "Table refreshed")
 
     return frame_consult_tickets
 
