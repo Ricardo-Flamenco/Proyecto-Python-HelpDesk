@@ -50,7 +50,7 @@ def show_tickets(frame_show):
     #de data.py es importado tickets y en base al ultimo elemento el que es creado se crea visual_tickets 
     key = next(reversed(tickets))
 
-    visual_ticket = tk.Frame(frame_show, relief="raised", bd=3, width=900, height=90 )
+    visual_ticket = tk.Frame(frame_show, relief="raised", bd=2, width=900, height=90 )
     visual_ticket.grid(row=row, column=0, padx=20, pady=30, sticky="e")
 
     visual_tickets_dict[key] = visual_ticket

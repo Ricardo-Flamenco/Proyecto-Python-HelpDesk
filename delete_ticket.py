@@ -16,7 +16,7 @@ def delete_tickets_menu(parent):
     entry_delete.place(x=55, y=60)
     entry_delete.bind("<KeyRelease>", lambda e: show_match())
     
-    delete_button = tk.Button(delete_menu_frame, text="Delete Ticket", bg="red", fg="white", font=("Arial", 11, "bold"), command=lambda:delete_ticket(entry_delete))
+    delete_button = tk.Button(delete_menu_frame, text="Delete Ticket", bg="red", fg="white", font=("Arial", 11, "bold"), cursor="hand2", command=lambda:delete_ticket(entry_delete))
     delete_button.place(x=500, y=55, width=150, height=35)
 
     frame_show_ticket_eliminate = tk.Frame(delete_menu_frame, padx=55, pady=15, bd=2, relief="ridge", bg="#FFFFFF")

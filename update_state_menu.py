@@ -55,16 +55,16 @@ def update_state_frame(parent):
 
     tk.Label(
         update_frame,
-        text="Ticket ID",
+        text="Change the state of a tickets by ID",
         bg="white",
         font=("Arial", 11, "bold")
-    ).place(x=150, y=30)
+    ).place(x=55, y=30)
 
     search_bar = ctk.CTkEntry(
         update_frame,
         fg_color="#ffffff",
         text_color="#000000", 
-        placeholder_text="Change the state of a tickets by ID", 
+        placeholder_text="Enter a ticket ID", 
         font=("Arial", 13), 
         corner_radius=10, 
         width=275

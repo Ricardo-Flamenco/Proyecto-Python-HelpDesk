@@ -1,4 +1,5 @@
 import tkinter as tk
+import customtkinter as ctk
 from storage import tickets
 from validations import search_ticket
 
@@ -13,17 +14,6 @@ def ticket_search_frame(parent, search_bar):
         width=1065,
         height=600
     )
-
-    placeholder = tk.Label(
-        searched_ticket_frame,
-        text="No tickets searched",
-        font=("Arial", 20, "bold"),
-        bg="white",
-        fg="#555555"
-    )
-
-    placeholder.place(relx=0.5, rely=0.5, anchor="center")
-
 
     def buscar_ticket():
 
@@ -88,7 +78,6 @@ def ticket_search_frame(parent, search_bar):
             ("User", data["user"]),
             ("Problem", data["problem"]),
             ("State", data["state"]),
-            ("Priority", data["priority"])
         ]
 
         for fila, (nombre, valor) in enumerate(campos):
@@ -110,6 +99,43 @@ def ticket_search_frame(parent, search_bar):
                 wraplength=800
             ).grid(row=fila, column=1, padx=20, pady=15, sticky="w")
 
+        fila = len(campos)
+
+        tk.Label(
+            info,
+            text="Priority:",
+            font=("Arial", 14, "bold"),
+            bg="white"
+        ).grid(row=fila, column=0, padx=20, pady=15, sticky="w")
+
+        priority_frame = tk.Frame(info, bg="white")
+        priority_frame.grid(row=fila, column=1, padx=20, pady=15, sticky="w")
+
+        priority_box = tk.Canvas(
+            priority_frame,
+            width=20,
+            height=20,
+            highlightthickness=0,
+            bd=0
+            )
+
+        match data["priority"]:
+            case "Low":
+                color = "#00A035"
+            case "Medium":
+                color = "#f8c24d"
+            case "High":
+                color = "#da3535"
+
+        priority_box.configure(bg=color)
+        priority_box.pack(side="left")
+        
+        tk.Label(
+            priority_frame,
+            text=data["priority"],
+            font=("Arial", 14),
+            bg="white"
+        ).pack(side="left", padx=(10, 0))
         searched_ticket_frame.tkraise()
 
     search_bar.bind("<Return>", lambda event: buscar_ticket())

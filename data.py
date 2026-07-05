@@ -1,6 +1,6 @@
 import tkinter as tk
 from validations import validate_ticket
-from notifications import notification_popup
+from notifications import notification_popup, notification_popup_close
 import storage
 
 #Obtiene todos los valores de registro para guardar la informacion
@@ -23,6 +23,7 @@ def save_ticket(user_name_entry, problem_text, priority_box, parent):
         notification_popup(parent, "Please complete all required fields")
         return False
     else:
+        notification_popup_close(parent, f"A ticket has been created \n\n consult ID: {ticket_id}"),
         id_checked, user_checked, problem_checked, priority_checked = result
         storage.tickets[ticket_id] = {"id": id_checked,
         "user": user_checked,

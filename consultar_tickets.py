@@ -7,25 +7,25 @@ def consult_tickets(parent):
     frame_consult_tickets = tk.Frame(parent, width=800, height=500, bg="#ffffff")
     frame_consult_tickets.place(relx=1.0, rely=1.0, anchor="se", width=1065, height=600)
 
-    title_label = tk.Label(frame_consult_tickets, text="View Tickets", font=("Arial", 20, "bold"), bg="#ffffff",fg="#1e3a8a")
+    title_label = tk.Label(frame_consult_tickets, text="View tickets", font=("Arial", 20, "bold"), bg="#ffffff",fg="#1e3a8a")
     title_label.pack(pady=20)
 
     table_frame = tk.Frame(frame_consult_tickets, bg="white")
     table_frame.pack(padx=20, pady=10, fill="both", expand=True)
 
-    stats_frame = tk.Frame(frame_consult_tickets, bg="#ffffff", width=560, height=30)
+    stats_frame = tk.Frame(frame_consult_tickets, bg="#ffffff", width=560, height=30, bd=2, relief="groove")
     stats_frame.place(x=30, y=70)
 
-    ticket_count = tk.Label(stats_frame, text=f"Amount of tickets: {len(tickets.keys())}", font=("Arial", 10), bg="#ffffff")
+    ticket_count = tk.Label(stats_frame, text=f"Amount of tickets: {len(tickets.keys())}", font=("Arial", 10, "bold"), bg="#ffffff")
     ticket_count.grid(row=0, column=0, padx=20, sticky="w")
 
-    resolved_tickets = tk.Label(stats_frame, text=f"Resolved tickets: 0", font=("Arial", 10), bg="#ffffff")
+    resolved_tickets = tk.Label(stats_frame, text=f"Resolved tickets: 0", font=("Arial", 10, "bold"), bg="#ffffff")
     resolved_tickets.grid(row=0, column=1, padx=20, sticky="w")
 
-    pending_tickets = tk.Label(stats_frame, text=f"Pending tickets: 0", font=("Arial", 10), bg="#ffffff")
+    pending_tickets = tk.Label(stats_frame, text=f"Pending tickets: 0", font=("Arial", 10, "bold"), bg="#ffffff")
     pending_tickets.grid(row=0, column=2, padx=20, sticky="w")
 
-    high_tickets = tk.Label(stats_frame,  text=f"High priority tickets: 0", font=("Arial", 10), bg="#ffffff")
+    high_tickets = tk.Label(stats_frame,  text=f"High priority tickets: 0", font=("Arial", 10, "bold"), bg="#ffffff")
     high_tickets.grid(row=0, column=3, padx=20, sticky="w")
 
 
@@ -47,10 +47,10 @@ def consult_tickets(parent):
     tickets_table.configure(yscrollcommand=scrollbar.set)
     scrollbar.pack(side="right", fill="y", padx=(0,0))
 
-    buttons_frame = tk.Frame(frame_consult_tickets, bg="#f3f4f6")
+    buttons_frame = tk.Frame(frame_consult_tickets, bg="#ffffff")
     buttons_frame.pack(pady=20)
 
-    refresh_button = tk.Button(buttons_frame,text="Refresh",width=15,bg="#2563eb",fg="white", command=lambda:refresh_table())
+    refresh_button = tk.Button(buttons_frame,text="Refresh", width=15, height=2, font=("Arial", 11, "bold"), bg="#2563eb",fg="white", cursor="hand2", command=lambda:(refresh_table(), notification_popup(parent, "Table refreshed")))
     refresh_button.grid(row=0, column=0, padx=10)
 
     def refresh_table():
@@ -85,8 +85,7 @@ def consult_tickets(parent):
 
         high_tickets.config(text=f"High priority tickets: {tickets_high}")
 
-
-        notification_popup(parent, "Table refreshed")
+    refresh_table()
 
     return frame_consult_tickets
 

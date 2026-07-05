@@ -15,9 +15,6 @@ def validate_ticket(ticket_id, user_name, problem, priority):
     
     return ticket_id, user_name, problem, priority
 
-def view_tickets():
-    return tickets
-
 def search_ticket(parent, search_bar):
 
     ticket_id = search_bar.get().strip()

@@ -48,7 +48,7 @@ frame_der = ctk.CTkFrame(screen, fg_color="#121924", width=400, height=100, corn
 frame_der.pack(side="top", fill="x")
 
 #FRAME DER
-search_bar = ctk.CTkEntry(frame_der, fg_color="#ffffff", text_color="#000000", placeholder_text="Search tickets by ID", font=("Arial", 13), corner_radius=10, width=400)
+search_bar = ctk.CTkEntry(frame_der, fg_color="#ffffff", text_color="#000000", placeholder_text="Enter a ticket ID", font=("Arial", 13), corner_radius=10, width=400)
 search_bar.place(x=100, y=30, anchor="w")
 glass_icon = tk.Label(frame_der, image=glass ,bg="#121924")
 glass_icon.place(x=50, y=30, anchor="w")
@@ -90,30 +90,25 @@ def activate_buttons(active):
         menu_buttons[3].config(bg="#10164e")
     elif active_button == 4:
         menu_buttons[4].config(bg="#10164e")
-    elif active_button == 5:
-        menu_buttons[5].config(bg="#10164e")
 
 #tkraise() levanta los frames encima de otros para hacer un cambio de menu
-tickets_menu = tk.Button(frame_izq, image=home, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Home", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_frame_show.tkraise(), activate_buttons(0)))
+tickets_menu = tk.Button(frame_izq, image=home, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Home", font=("Arial", 15, "bold"), bd=0, cursor="hand2", command=lambda:(menu_frame_show.tkraise(), activate_buttons(0), search_bar.configure(state="normal", fg_color="#ffffff")))
 tickets_menu.place(x=0, y=50, anchor="w")
 
-register = tk.Button(frame_izq, image=clipboard, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Register a new ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_main_frame.tkraise(), activate_buttons(1)))
+register = tk.Button(frame_izq, image=clipboard, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Create a new ticket", font=("Arial", 15, "bold"), bd=0, cursor="hand2", command=lambda:(menu_main_frame.tkraise(), activate_buttons(1), search_bar.configure(state="normal", fg_color="#ffffff")))
 register.place(x=0, y=120, anchor="w")
 
-state = tk.Button(frame_izq, image=pen, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Update state of a ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_update_frame.tkraise(), activate_buttons(2)))
+state = tk.Button(frame_izq, image=pen, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Update state of a ticket", font=("Arial", 15, "bold"), bd=0, cursor="hand2", command=lambda:(menu_update_frame.tkraise(), activate_buttons(2), search_bar.configure(state="normal", fg_color="#ffffff")))
 state.place(x=0, y=190, anchor="w")
 
-delete = tk.Button(frame_izq, image=trash_bin, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Delete a ticket", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_delete_frame.tkraise(), activate_buttons(3)))
+delete = tk.Button(frame_izq, image=trash_bin, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Delete a ticket", font=("Arial", 15, "bold"), bd=0, cursor="hand2", command=lambda:(menu_delete_frame.tkraise(), activate_buttons(3), search_bar.configure(state="normal", fg_color="#ffffff")))
 delete.place(x=0, y=260, anchor="w")
 
-search = tk.Button(frame_izq, image=glass_menu, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Searched tickets", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_search_frame.tkraise(), activate_buttons(4)))
-search.place(x=0, y=330, anchor="w")
-
-consult = tk.Button(frame_izq, image=folder, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Consult tickets", font=("Arial", 15, "bold"), bd=0, command=lambda:(menu_consult_frame.tkraise(), activate_buttons(5)))
-consult.place(x=0, y=400, anchor="w")
+consult = tk.Button(frame_izq, image=folder, width=300, padx=6, anchor="w", activebackground="#1e293b", bg="#1e293b", fg="#ffffff", compound="left", text="Consult tickets", font=("Arial", 15, "bold"), bd=0, cursor="hand2", command=lambda:(menu_consult_frame.tkraise(), activate_buttons(4), search_bar.configure(state="normal", fg_color="#ffffff")))
+consult.place(x=0, y=330, anchor="w")
 
 #lista que tiene todos los botones de menu
-menu_buttons = [tickets_menu, register, state, delete, search, consult]
+menu_buttons = [tickets_menu, register, state, delete, consult]
 menu_frame_show.tkraise()
 
 screen.mainloop()
