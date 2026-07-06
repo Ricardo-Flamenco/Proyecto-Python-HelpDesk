@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
-from storage import tickets
+import storage
 
 row = 0
 state_label_dict = {}
@@ -48,77 +48,77 @@ def show_tickets(frame_show):
     global row
 
     #de data.py es importado tickets y en base al ultimo elemento el que es creado se crea visual_tickets 
-    key = next(reversed(tickets))
+    for key in storage.tickets:
 
-    visual_ticket = tk.Frame(frame_show, relief="raised", bd=2, width=900, height=90 )
-    visual_ticket.grid(row=row, column=0, padx=20, pady=30, sticky="e")
+        visual_ticket = tk.Frame(frame_show, relief="raised", bd=2, width=900, height=90 )
+        visual_ticket.grid(row=row, column=0, padx=20, pady=30, sticky="e")
 
-    visual_tickets_dict[key] = visual_ticket
+        visual_tickets_dict[key] = visual_ticket
 
-    #IDs
-    id_label = tk.Label(visual_ticket, text="ID:")
-    id_label.place(x=60, rely=0.15, anchor="center")
-    id = tk.Label(visual_ticket, text=f"# {key}", font=("Arial", 10, "bold"), wraplength=144)
-    id.place(x=60, rely=0.5, anchor="center")
+        #IDs
+        id_label = tk.Label(visual_ticket, text="ID:")
+        id_label.place(x=60, rely=0.15, anchor="center")
+        id = tk.Label(visual_ticket, text=f"# {key}", font=("Arial", 10, "bold"), wraplength=144)
+        id.place(x=60, rely=0.5, anchor="center")
 
-    #USER
-    user_label = tk.Label(visual_ticket, text="User:")
-    user_label.place(x=204, rely=0.15, anchor="center")
-    user = tk.Label(visual_ticket, text=f"{tickets[key]["user"][:30] + "..." if len(tickets[key]["user"]) > 31 else tickets[key]["user"]}", font=("Arial", 10), wraplength=144)
-    user.place(x=204, rely=0.5, anchor="center")
+        #USER
+        user_label = tk.Label(visual_ticket, text="User:")
+        user_label.place(x=204, rely=0.15, anchor="center")
+        user = tk.Label(visual_ticket, text=f"{storage.tickets[key]["user"][:30] + "..." if len(storage.tickets[key]["user"]) > 31 else storage.tickets[key]["user"]}", font=("Arial", 10), wraplength=144)
+        user.place(x=204, rely=0.5, anchor="center")
 
-    #PROBLEM
-    problem_label = tk.Label(visual_ticket, text="Description:")
-    problem_label.place(x=378, rely=0.15, anchor="center")
-    problem = tk.Label(visual_ticket, text=f"{tickets[key]["problem"][:35] + "..." if len(tickets[key]["problem"]) > 35 else tickets[key]["problem"]}", font=("Arial", 10), wraplength=164)
-    problem.place(x=378, rely=0.5, anchor="center")
+        #PROBLEM
+        problem_label = tk.Label(visual_ticket, text="Description:")
+        problem_label.place(x=378, rely=0.15, anchor="center")
+        problem = tk.Label(visual_ticket, text=f"{storage.tickets[key]["problem"][:35] + "..." if len(storage.tickets[key]["problem"]) > 35 else storage.tickets[key]["problem"]}", font=("Arial", 10), wraplength=164)
+        problem.place(x=378, rely=0.5, anchor="center")
 
-    #PRIORITY
-    priority = tk.Label(visual_ticket, text=f"{tickets[key]["priority"]}", font=("Arial", 10), anchor="w", wraplength=144)
-    priority.place(x=552, rely=0.5, anchor="w")
-    priority_box = tk.Canvas(visual_ticket, bd=0)
-    match tickets[key]["priority"]:
-        case "Low":
-            priority_box.configure(bg="#00A035")
-        case "Medium":
-            priority_box.configure(bg="#f8c24d")
-        case "High":
-            priority_box.configure(bg="#da3535")
-    priority_box.place(x=537, rely=0.5, anchor="center", width=20, height=20)
+        #PRIORITY
+        priority = tk.Label(visual_ticket, text=f"{storage.tickets[key]["priority"]}", font=("Arial", 10), anchor="w", wraplength=144)
+        priority.place(x=552, rely=0.5, anchor="w")
+        priority_box = tk.Canvas(visual_ticket, bd=0)
+        match storage.tickets[key]["priority"]:
+            case "Low":
+                priority_box.configure(bg="#00A035")
+            case "Medium":
+                priority_box.configure(bg="#f8c24d")
+            case "High":
+                priority_box.configure(bg="#da3535")
+        priority_box.place(x=537, rely=0.5, anchor="center", width=20, height=20)
 
-    #STATE
-    state_label = tk.Label(visual_ticket, text=f"{tickets[key]["state"]}", font=("Arial", 10, "bold"), anchor="w", wraplength=144)
-    state_label.place(x=726, rely=0.5, anchor="center")
+        #STATE
+        state_label = tk.Label(visual_ticket, text=f"{storage.tickets[key]["state"]}", font=("Arial", 10, "bold"), anchor="w", wraplength=144)
+        state_label.place(x=726, rely=0.5, anchor="center")
 
-    state_label_dict[key] = state_label
+        state_label_dict[key] = state_label
 
     #si el contenido es mucho para que quepa en el ticket se hace lo siguiente para adaptar el ticket la contenido 
 
-    #USER
-    user.bind("<Enter>", lambda event:show_user(event))
-    def show_user(event):
-        x_position = event.x_root
-        y_position = event.y_root
-        window_user = tk.Toplevel(frame_show)
-        window_user.overrideredirect(True)
-        window_user.geometry(f"+{x_position + 25}+{y_position + 25}")
-        full_user = tk.Label(window_user, text=f"{tickets[key]["user"]}", wraplength=200, relief="raised", bg="#ffffff")
-        full_user.pack()
-        
-        user.bind("<Leave>", lambda e:window_user.destroy())
+        #USER
+        user.bind("<Enter>", lambda event:show_user(event))
+        def show_user(event):
+            x_position = event.x_root
+            y_position = event.y_root
+            window_user = tk.Toplevel(frame_show)
+            window_user.overrideredirect(True)
+            window_user.geometry(f"+{x_position + 25}+{y_position + 25}")
+            full_user = tk.Label(window_user, text=f"{storage.tickets[key]["user"]}", wraplength=200, relief="raised", bg="#ffffff")
+            full_user.pack()
+            
+            user.bind("<Leave>", lambda e:window_user.destroy())
 
-    #PROBLEM
-    problem.bind("<Enter>", lambda event:show_problem(event))
-    def show_problem(event):
-        x_position = event.x_root
-        y_position = event.y_root
-        window_problem = tk.Toplevel(frame_show)
-        window_problem.overrideredirect(True)
-        window_problem.geometry(f"+{x_position + 25}+{y_position + 25}")
-        full_problem = tk.Label(window_problem, text=f"{tickets[key]["problem"]}", wraplength=200, relief="raised", bg="#ffffff")
-        full_problem.pack()
-        
-        problem.bind("<Leave>", lambda e:window_problem.destroy())
+        #PROBLEM
+        problem.bind("<Enter>", lambda event:show_problem(event))
+        def show_problem(event):
+            x_position = event.x_root
+            y_position = event.y_root
+            window_problem = tk.Toplevel(frame_show)
+            window_problem.overrideredirect(True)
+            window_problem.geometry(f"+{x_position + 25}+{y_position + 25}")
+            full_problem = tk.Label(window_problem, text=f"{storage.tickets[key]["problem"]}", wraplength=200, relief="raised", bg="#ffffff")
+            full_problem.pack()
+            
+            problem.bind("<Leave>", lambda e:window_problem.destroy())
 
-    row += 1
+        row += 1
     return True

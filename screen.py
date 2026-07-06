@@ -1,5 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
+import manager_json
 from tkinter import *
 from PIL import Image, ImageTk
 from register_tickets import register_ticket
@@ -8,6 +9,8 @@ from update_state_menu import update_state_frame
 from delete_ticket import delete_tickets_menu
 from search_tickets import ticket_search_frame
 from consultar_tickets import consult_tickets
+
+manager_json.cargar_tickets()
 
 screen = tk.Tk()
 screen.title("HelpDesk")

@@ -1,13 +1,18 @@
 import tkinter as tk
+import manager_json
 from validations import validate_ticket
 from notifications import notification_popup, notification_popup_close
-import storage
+import storage 
 
 #Obtiene todos los valores de registro para guardar la informacion
 def save_ticket(user_name_entry, problem_text, priority_box, parent):
-
+    
     #crea las IDs
-    ticket_id = f"{storage.number:04d}"
+    if storage.tickets:
+        max_id = max(int(ticket) for ticket in storage.tickets)
+        ticket_id = f"{max_id + 1:04d}"
+    else:
+        ticket_id = "0000"
     
     #Obtiene lo demas
     user_name = user_name_entry.get()
@@ -32,7 +37,8 @@ def save_ticket(user_name_entry, problem_text, priority_box, parent):
         "state": "Pending"
        }
         
-        storage.number += 1
+        manager_json.guardar_tickets()
+
         return True
         
 #la estructura del diccionario es:

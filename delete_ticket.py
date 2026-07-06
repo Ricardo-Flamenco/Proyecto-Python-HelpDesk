@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import *
-from storage import tickets
+import storage
 from ticket_make import visual_tickets_dict
 from notifications import notification_popup
+import manager_json
 import customtkinter as ctk
  
 def delete_tickets_menu(parent): 
@@ -32,12 +33,12 @@ def delete_tickets_menu(parent):
     def show_match():
 
         ticket_match = entry_delete.get()
-        if ticket_match in tickets:
+        if ticket_match in storage.tickets:
             for widget in frame_show_ticket_eliminate.winfo_children():
                 widget.destroy()
             tk.Label(
             frame_show_ticket_eliminate,
-            text=f"Ticket #{tickets[ticket_match]["id"]}",
+            text=f"Ticket #{storage.tickets[ticket_match]["id"]}",
             font=("Arial", 20, "bold"),
             bg="white"
             ).pack(pady=15)
@@ -49,7 +50,7 @@ def delete_tickets_menu(parent):
                 bg="white"
             ).place(x=60, y=100)
 
-            tk.Label(frame_show_ticket_eliminate, text=f"{tickets[ticket_match]["user"][:45] + "..." if len(tickets[ticket_match]["user"]) > 45 else tickets[ticket_match]["user"]}",
+            tk.Label(frame_show_ticket_eliminate, text=f"{storage.tickets[ticket_match]["user"][:45] + "..." if len(storage.tickets[ticket_match]["user"]) > 45 else storage.tickets[ticket_match]["user"]}",
                 font=("Arial", 13),
                 bg="white",
                 justify="left"
@@ -64,7 +65,7 @@ def delete_tickets_menu(parent):
 
             tk.Label(
                 frame_show_ticket_eliminate,
-                text=f"{tickets[ticket_match]["problem"][:55] + "..." if len(tickets[ticket_match]["problem"]) > 55 else tickets[ticket_match]["problem"]}",
+                text=f"{storage.tickets[ticket_match]["problem"][:55] + "..." if len(storage.tickets[ticket_match]["problem"]) > 55 else storage.tickets[ticket_match]["problem"]}",
                 font=("Arial", 13),
                 bg="white",
                 justify="left"
@@ -79,13 +80,13 @@ def delete_tickets_menu(parent):
 
             tk.Label(
                 frame_show_ticket_eliminate,
-                text=f"{tickets[ticket_match]["priority"]}",
+                text=f"{storage.tickets[ticket_match]["priority"]}",
                 bg="white",
                 font=("Arial", 13),
                 justify="left"
             ).place(x=520, y=130)
             priority_box = tk.Canvas(frame_show_ticket_eliminate, bd=0)
-            match tickets[ticket_match]["priority"]:
+            match storage.tickets[ticket_match]["priority"]:
                 case "Low":
                     priority_box.configure(bg="#00A035")
                 case "Medium":
@@ -102,7 +103,7 @@ def delete_tickets_menu(parent):
             ).place(x=500, y=160)
             tk.Label(
                 frame_show_ticket_eliminate,
-                text=f"Current state: {tickets[ticket_match]["state"]}",
+                text=f"Current state: {storage.tickets[ticket_match]["state"]}",
                 font=("Arial", 13),
                 bg="white",
                 justify="left"
@@ -119,7 +120,6 @@ def delete_tickets_menu(parent):
             ).place(relx=0.5, rely=0.5, anchor="center")
         
 
-
     def delete_ticket(entry_delete):
 
         id_delete = entry_delete.get()
@@ -127,10 +127,13 @@ def delete_tickets_menu(parent):
             notification_popup(parent, "Enter a ticket ID to delete")
             return
 
-        if id_delete in tickets:
-            del tickets[id_delete]
+        if id_delete in storage.tickets:
+            del storage.tickets[id_delete]
             visual_tickets_dict[id_delete].destroy()
+            del visual_tickets_dict[id_delete]
             notification_popup(parent, "Ticket deleted successfully")
+
+            manager_json.guardar_tickets()
 
         else:
             notification_popup(parent, "Ticket ID has not been found")

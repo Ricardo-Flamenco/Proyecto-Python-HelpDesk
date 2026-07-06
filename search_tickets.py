@@ -1,6 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
-from storage import tickets
+import storage 
 from validations import search_ticket
 
 
@@ -26,7 +26,7 @@ def ticket_search_frame(parent, search_bar):
         for widget in searched_ticket_frame.winfo_children():
             widget.destroy()
 
-        data = tickets[ticket]
+        data = storage.tickets[ticket]
 
         canvas = tk.Canvas(                     
             searched_ticket_frame,              

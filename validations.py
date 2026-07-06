@@ -1,9 +1,9 @@
-from storage import tickets
+import storage
 from notifications import notification_popup
 
 def validate_ticket(ticket_id, user_name, problem, priority):
 
-    for ticket in tickets:
+    for ticket in storage.tickets:
         if ticket == ticket_id:
             return
 
@@ -21,7 +21,7 @@ def search_ticket(parent, search_bar):
     if ticket_id == "":
         return
 
-    for ticket in tickets:
+    for ticket in storage.tickets:
         if ticket == ticket_id:
             notification_popup(parent, "Ticket found")
             return ticket
@@ -42,7 +42,7 @@ def change_status(state_box, search_bar, parent):
         notification_popup(parent, "Invalid status")
         return
 
-    for ticket in tickets:
+    for ticket in storage.tickets:
         if ticket == ticket_id:
             return new_status, parent, ticket
 

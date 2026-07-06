@@ -1,15 +1,24 @@
-#import json 
+import json
+import os
+import storage
  
-#with open("tickets.json", "r") as archivo:
-#    datos = json.load(archivo)
+ARCHIVO = "backend.json"
  
-#usuario = input("Ingrese el nombre del usuario: ")
+if not os.path.exists(ARCHIVO):
+    with open(ARCHIVO, "w", encoding="utf-8") as archivo:
+        json.dump({"tickets": {}}, archivo, indent=4)
  
-#if usuario in datos:
-#    print(f"\nUsuario: {usuario}")
-#    print(f"Cantidad de tickets: {len(datos[usuario]['tickets'])}")
-#    print("Tickets:", datos[usuario]["tickets"])
-#    print(f"Eliminados: {datos[usuario]['eliminados']}")
-#else:
-#    print("El usuario no existe.")
+def cargar_tickets():
  
+    with open(ARCHIVO, "r", encoding="utf-8") as archivo:
+        datos = json.load(archivo)
+ 
+    storage.tickets = datos["tickets"]
+
+def guardar_tickets():
+    datos = {
+        "tickets": storage.tickets
+    }
+
+    with open(ARCHIVO, "w", encoding="utf-8") as archivo:
+        json.dump(datos, archivo, indent=4, ensure_ascii=False)

@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from storage import tickets
+import storage 
 from notifications import notification_popup
 
 def consult_tickets(parent):
@@ -16,7 +16,7 @@ def consult_tickets(parent):
     stats_frame = tk.Frame(frame_consult_tickets, bg="#ffffff", width=560, height=30, bd=2, relief="groove")
     stats_frame.place(x=30, y=70)
 
-    ticket_count = tk.Label(stats_frame, text=f"Amount of tickets: {len(tickets.keys())}", font=("Arial", 10, "bold"), bg="#ffffff")
+    ticket_count = tk.Label(stats_frame, text=f"Amount of tickets: {len(storage.tickets.keys())}", font=("Arial", 10, "bold"), bg="#ffffff")
     ticket_count.grid(row=0, column=0, padx=20, sticky="w")
 
     resolved_tickets = tk.Label(stats_frame, text=f"Resolved tickets: 0", font=("Arial", 10, "bold"), bg="#ffffff")
@@ -62,22 +62,22 @@ def consult_tickets(parent):
         tickets_table.delete(*tickets_table.get_children())
 
         # Volver a llenarla
-        for ticket_id in tickets:
-            tickets_table.insert("", tk.END, values=(ticket_id, tickets[ticket_id]["user"], tickets[ticket_id]["priority"], tickets[ticket_id]["state"]))
+        for ticket_id in storage.tickets:
+            tickets_table.insert("", tk.END, values=(ticket_id, storage.tickets[ticket_id]["user"], storage.tickets[ticket_id]["priority"], storage.tickets[ticket_id]["state"]))
 
-        for ticket in tickets:
-            if tickets[ticket]["state"] == "Resolved":
+        for ticket in storage.tickets:
+            if storage.tickets[ticket]["state"] == "Resolved":
                 tickets_resolved += 1
 
-        for ticket in tickets:
-            if tickets[ticket]["state"] == "Pending":
+        for ticket in storage.tickets:
+            if storage.tickets[ticket]["state"] == "Pending":
                 tickets_pending += 1
 
-        for ticket in tickets:
-            if tickets[ticket]["priority"] == "High":
+        for ticket in storage.tickets:
+            if storage.tickets[ticket]["priority"] == "High":
                 tickets_high += 1
 
-        ticket_count.config(text=f"Amount of tickets: {len(tickets.keys())}")
+        ticket_count.config(text=f"Amount of tickets: {len(storage.tickets.keys())}")
 
         resolved_tickets.config(text=f"Resolved tickets: {tickets_resolved}")
 
@@ -88,25 +88,3 @@ def consult_tickets(parent):
     refresh_table()
 
     return frame_consult_tickets
-
-
-
-
-#tickets_table.bind("<<TreeviewSelect>>", seleccionar_ticket)
-#ticket_id = tickets_table.selection()[0]
-
-
-
-#def seleccionar_ticket(event):
-
-#    ticket_id = tickets_table.selection()[0]
-
-#    def refresh_table():
-    # Vaciar la tabla
-#    tickets_table.delete(*tickets_table.get_children())
-
-    # Volver a llenarla
- #    for ticket_id in tickets.items():
-#        tickets_table.insert("", tk.END, values=(ticket_id, tickets[ticket_id]["user"], tickets[ticket_id]["priority"], tickets[ticket_id]["state"]))
-
-        

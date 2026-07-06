@@ -1,0 +1,18 @@
+{
+    "tickets": {
+        "0000": {
+            "id": "0000",
+            "user": "xzczxc",
+            "problem": "zc",
+            "priority": "Low",
+            "state": "Resolved"
+        },
+        "0001": {
+            "id": "0001",
+            "user": "asd",
+            "problem": "sad",
+            "priority": "Low",
+            "state": "Pending"
+        }
+    }
+}
