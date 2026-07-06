@@ -9,6 +9,7 @@ from update_state_menu import update_state_frame
 from delete_ticket import delete_tickets_menu
 from search_tickets import ticket_search_frame
 from consultar_tickets import consult_tickets
+from notifications import images_init
 
 manager_json.cargar_tickets()
 
@@ -44,6 +45,14 @@ folder = Image.open("assets/folder-solid.ico")
 folder = folder.resize((38, 38), Image.Resampling.LANCZOS)
 folder = ImageTk.PhotoImage(folder)
 
+x = Image.open("assets/x-solid.ico")
+x = x.resize((20, 20), Image.Resampling.LANCZOS)
+x = ImageTk.PhotoImage(x)
+
+copy = Image.open("assets/copy-solid.ico")
+copy = copy.resize((20, 20), Image.Resampling.LANCZOS)
+copy = ImageTk.PhotoImage(copy)
+
 frame_izq = tk.Frame(screen, bg="#1E293B", width=300)
 frame_izq.pack(side="left", fill="y")
 
@@ -68,6 +77,7 @@ menu_update_frame = update_state_frame(screen)
 menu_delete_frame = delete_tickets_menu(screen)
 _, menu_search_frame = ticket_search_frame(screen, search_bar)
 menu_consult_frame = consult_tickets(screen)
+images_init()
 
 
 #FRAME IZQ

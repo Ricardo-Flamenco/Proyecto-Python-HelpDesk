@@ -29,6 +29,7 @@ def tickets_frame_show(parent):
     canva_show.place(relx=0, rely=0, anchor="nw", width=1065, height=600)
 
     canva_show.bind_all("<MouseWheel>", lambda event:move_scroll(event))
+    show_tickets(frame_show)
 
 
     def move_scroll(event):
