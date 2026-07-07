@@ -47,11 +47,13 @@ def tickets_frame_show(parent):
 def show_tickets(frame_show):
 
     global row
+    for widget in frame_show.winfo_children():
+        widget.destroy()
 
     #de data.py es importado tickets y en base al ultimo elemento el que es creado se crea visual_tickets 
     for key in storage.tickets:
 
-        visual_ticket = tk.Frame(frame_show, relief="raised", bd=2, width=900, height=90 )
+        visual_ticket = tk.Frame(frame_show, relief="raised", bd=2, width=800, height=90 )
         visual_ticket.grid(row=row, column=0, padx=20, pady=30, sticky="e")
 
         visual_tickets_dict[key] = visual_ticket
@@ -92,34 +94,5 @@ def show_tickets(frame_show):
         state_label.place(x=726, rely=0.5, anchor="center")
 
         state_label_dict[key] = state_label
-
-    #si el contenido es mucho para que quepa en el ticket se hace lo siguiente para adaptar el ticket la contenido 
-
-        #USER
-        user.bind("<Enter>", lambda event:show_user(event))
-        def show_user(event):
-            x_position = event.x_root
-            y_position = event.y_root
-            window_user = tk.Toplevel(frame_show)
-            window_user.overrideredirect(True)
-            window_user.geometry(f"+{x_position + 25}+{y_position + 25}")
-            full_user = tk.Label(window_user, text=f"{storage.tickets[key]["user"]}", wraplength=200, relief="raised", bg="#ffffff")
-            full_user.pack()
-            
-            user.bind("<Leave>", lambda e:window_user.destroy())
-
-        #PROBLEM
-        problem.bind("<Enter>", lambda event:show_problem(event))
-        def show_problem(event):
-            x_position = event.x_root
-            y_position = event.y_root
-            window_problem = tk.Toplevel(frame_show)
-            window_problem.overrideredirect(True)
-            window_problem.geometry(f"+{x_position + 25}+{y_position + 25}")
-            full_problem = tk.Label(window_problem, text=f"{storage.tickets[key]["problem"]}", wraplength=200, relief="raised", bg="#ffffff")
-            full_problem.pack()
-            
-            problem.bind("<Leave>", lambda e:window_problem.destroy())
-
         row += 1
     return True
