@@ -4,7 +4,7 @@ import customtkinter as ctk
 import manager_json
 
 import storage
-from ticket_make import state_label_dict, visual_tickets_dict
+import ticket_make
 from notifications import notification_popup
 from validations import change_status
 
@@ -215,23 +215,22 @@ def update_state_ticket(result):
 
     if result is None:
         return
-
+            
     new_status, parent, ticket_found = result
 
     storage.tickets[ticket_found]["state"] = new_status
 
     colors = {
-        "Pending": "#FFFFFF",
+        "Pending": "#9CA3AF",
         "In process": "#f3cf6b",
         "Resolved": "#12a182"
     }
 
-    state_label_dict[ticket_found].config(
+    ticket_make.state_label_dict[ticket_found].config(
         text=new_status,
-        fg=colors[new_status]
     )
 
-    ticket_frame = visual_tickets_dict[ticket_found]
+    ticket_frame = ticket_make.visual_tickets_dict[ticket_found]
 
     highlight = tk.Frame(
         ticket_frame,
@@ -249,5 +248,8 @@ def update_state_ticket(result):
         parent,
         f"Ticket state successfully changed to: {new_status}"
     )
+
+    if ticket_make.refresh_home:
+        ticket_make.refresh_home()
 
     manager_json.guardar_tickets()

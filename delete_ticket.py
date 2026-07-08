@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
 import storage
-from ticket_make import visual_tickets_dict
+import ticket_make 
 from notifications import notification_popup
 import manager_json
 import customtkinter as ctk
@@ -129,11 +129,14 @@ def delete_tickets_menu(parent):
 
         if id_delete in storage.tickets:
             del storage.tickets[id_delete]
-            visual_tickets_dict[id_delete].destroy()
-            del visual_tickets_dict[id_delete]
+            ticket_make.visual_tickets_dict[id_delete].destroy()
+            del ticket_make.visual_tickets_dict[id_delete]
             notification_popup(parent, "Ticket deleted successfully")
 
             manager_json.guardar_tickets()
+
+        if ticket_make.refresh_home:
+            ticket_make.refresh_home()
 
         else:
             notification_popup(parent, "Ticket ID has not been found")

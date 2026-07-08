@@ -71,8 +71,8 @@ search_information.place(x=520, y=30, anchor="w")
 #Basic info
 
 #importa los frames de las funciones
-menu_frame_show, frame_show, _= tickets_frame_show(screen)
-menu_main_frame, _, _, _ = register_ticket(screen, frame_show)
+menu_frame_show, frame_show, canva_show = tickets_frame_show(screen)
+menu_main_frame, _, _, _ = register_ticket(screen, frame_show, canva_show)
 menu_update_frame = update_state_frame(screen)
 menu_delete_frame = delete_tickets_menu(screen)
 _, menu_search_frame = ticket_search_frame(screen, search_bar)
