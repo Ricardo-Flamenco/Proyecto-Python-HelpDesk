@@ -69,7 +69,6 @@ search_information = tk.Label(frame_der, bg="#121924", text="Search tickets by I
 search_information.place(x=520, y=30, anchor="w")
 
 #Basic info
-
 #importa los frames de las funciones
 menu_frame_show, frame_show, canva_show = tickets_frame_show(screen)
 menu_main_frame, _, _, _ = register_ticket(screen, frame_show, canva_show)

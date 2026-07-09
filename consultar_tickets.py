@@ -15,6 +15,7 @@ def consult_tickets(parent):
 
     stats_frame = tk.Frame(frame_consult_tickets, bg="#ffffff", width=560, height=30, bd=2, relief="groove")
     stats_frame.place(x=30, y=70)
+    tk.Label(frame_consult_tickets, text="Click a ticket to copy its ID:", bg="#ffffff",font=("Arial", 11, "bold")).place(x=30, y=40)
 
     ticket_count = tk.Label(stats_frame, text=f"Amount of tickets: {len(storage.tickets.keys())}", font=("Arial", 10, "bold"), bg="#ffffff")
     ticket_count.grid(row=0, column=0, padx=20, sticky="w")
@@ -52,6 +53,20 @@ def consult_tickets(parent):
 
     refresh_button = tk.Button(buttons_frame,text="Refresh", width=15, height=2, font=("Arial", 11, "bold"), bg="#2563eb",fg="white", cursor="hand2", command=lambda:(refresh_table(), notification_popup(parent, "Table refreshed")))
     refresh_button.grid(row=0, column=0, padx=10)
+
+    def click(event):
+        if tickets_table.identify_row(event.y):
+            row = tickets_table.identify_row(event.y)
+            ticket_row = tickets_table.item(row, "values")
+            id = ticket_row[0]
+            
+            parent.clipboard_clear()
+            parent.clipboard_append(id)
+            notification_popup(parent, f"ID copied: {id}")
+        else:
+            return "break"
+
+    tickets_table.bind("<Button-1>", lambda event:click(event))
 
     def refresh_table():
         # Vaciar la tabla

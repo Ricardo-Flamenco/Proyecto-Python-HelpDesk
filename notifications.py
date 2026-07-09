@@ -32,5 +32,5 @@ def notification_popup_close(parent, text):
 
     notification_label = tk.Label(notification, text=text, font=("Arial", 14, "bold"), bg="#FFFFFF", relief="raised", wraplength=400)
     notification_label.pack(fill="both", expand=True)
-    close_button = tk.Button(notification, image=close, font=("Arial", 13, "bold"), bd=0, command=lambda:notification.destroy())
+    close_button = tk.Button(notification, image=close, font=("Arial", 13, "bold"), bd=0, bg="#ffffff", command=lambda:notification.destroy())
     close_button.place(rely=0.1, relx=0.9, width=20, height=20)
