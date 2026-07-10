@@ -14,12 +14,17 @@ from notifications import images_init
 manager_json.cargar_tickets()
 
 screen = tk.Tk()
-screen.title("HelpDesk")
+screen.title("HelpTrack")
 screen.state("zoomed")
+screen.iconbitmap("assets/logo_helptrack.ico")
 
 home = Image.open("assets/house-solid.ico")
 home = home.resize((38, 38), Image.Resampling.LANCZOS)
 home = ImageTk.PhotoImage(home)
+
+logo = Image.open("assets/logotipo_helptrack.ico")
+logo = logo.resize((180, 180), Image.Resampling.LANCZOS)
+logo = ImageTk.PhotoImage(logo)
 
 clipboard = Image.open("assets/clipboard-list-solid.ico")
 clipboard = clipboard.resize((38, 38), Image.Resampling.LANCZOS)
@@ -80,6 +85,9 @@ images_init()
 
 
 #FRAME IZQ
+
+logo_helptrack = tk.Label(frame_izq, bg="#1e293b", image=logo)
+logo_helptrack.place(x=10, y=660, anchor="w")
 #Buttons
 active_button = 0
 
