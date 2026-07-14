@@ -7,10 +7,38 @@
             "priority": "High",
             "state": "In process"
         },
-        "0001": {
-            "id": "0001",
+        "0002": {
+            "id": "0002",
+            "user": "Siciliano",
+            "problem": "the Json file seems to be malfunctioning because the tickets were lost when the app was closed",
+            "priority": "Low",
+            "state": "Pending"
+        },
+        "0003": {
+            "id": "0003",
+            "user": "Eduardo",
+            "problem": "I think my PC can't run python properly",
+            "priority": "High",
+            "state": "Resolved"
+        },
+        "0004": {
+            "id": "0004",
+            "user": "Jaime",
+            "problem": "I think my PC can't run python properly",
+            "priority": "Low",
+            "state": "Pending"
+        },
+        "0005": {
+            "id": "0005",
             "user": "Ricardo",
-            "problem": "There is a lot of code left and i still dont know anything about my speech",
+            "problem": "The printer in the office is not working properly since monday",
+            "priority": "Medium",
+            "state": "Resolved"
+        },
+        "0006": {
+            "id": "0006",
+            "user": "Ricardo",
+            "problem": "My wfi is slow",
             "priority": "Medium",
             "state": "Pending"
         }

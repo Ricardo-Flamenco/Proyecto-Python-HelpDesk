@@ -32,7 +32,7 @@ def update_state_frame(parent):
         height=600
     )
 
-    scrollbar.pack(side="right", fill="y")
+    #scrollbar.pack(side="right", fill="y")
 
     update_canvas.configure(yscrollcommand=scrollbar.set)
     update_canvas.create_window((0, 0), window=update_frame, anchor="nw")

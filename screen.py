@@ -15,8 +15,14 @@ manager_json.cargar_tickets()
 
 screen = tk.Tk()
 screen.title("HelpTrack")
-screen.state("zoomed")
+WIDTH = 1366
+HEIGHT = 768
+sc_x = (screen.winfo_screenwidth() // 2) - (WIDTH // 2)
+sc_y = (screen.winfo_screenheight() // 2) - (HEIGHT // 2) 
+sc_position = f"{WIDTH}x{HEIGHT}+{sc_x}+{sc_y}"
+screen.geometry(sc_position)
 screen.iconbitmap("assets/logo_helptrack.ico")
+screen.resizable(False, False)
 
 home = Image.open("assets/house-solid.ico")
 home = home.resize((38, 38), Image.Resampling.LANCZOS)
